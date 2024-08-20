@@ -42,6 +42,9 @@ Or
 RotaL -s input.fasta -o report.tsv -c
 ```
 
+In addition, the user can specify "--nucseq" or "-n" option to show nucleotide sequences of the query and closest matching reference sequences in the output report. To silence the output on the terminal, specify 
+"--quiet" or "-q" option.
+
 ## Cite
 Chrispin Chaguza, Chimwemwe Mhango, A. Duncan Steele, Carl D. Kirkwood, Francis E. Dennis, Martin M. Nyaga, Celeste M. Donato, and Khuzwayo C. Jere. ***RotaL: A Python package for consistent assignment of rotavirus A lineages***. Pending submission. 
 
