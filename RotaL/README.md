@@ -42,8 +42,8 @@ Or
 RotaL -s input.fasta -o report.tsv -c
 ```
 
-##Cite
-Chrispin Chaguza, Chimwemwe Mhango, A. Duncan Steele, Carl D. Kirkwood, Francis E. Dennis, Martin M. Nyaga, Celeste M. Donato, and Khuzwayo C. Jere. RotaL: A Python package for consistent assignment of rotavirus A lineages. Pending submission. 
+## Cite
+Chrispin Chaguza, Chimwemwe Mhango, A. Duncan Steele, Carl D. Kirkwood, Francis E. Dennis, Martin M. Nyaga, Celeste M. Donato, and Khuzwayo C. Jere. **RotaL: A Python package for consistent assignment of rotavirus A lineages**. Pending submission. 
 
-Chrispin Chaguza, Celeste M. Donato, Chimwemwe Mhango, Arox W. Kamng’ona, Benjamin Kumwenda, Ernest Matambo, Daniel M. Njeru, A. Duncan Steele, Carl D. Kirkwood, Julius M. Mugweru, Jelle Matthijnssens, Rotavirus lineage designation consensus consortium (RLDCC), Francis E. Dennis, Martin M. Nyaga, and Khuzwayo C. Jere. Global rotavirus A evolution and genomic epidemiology revealed at high-resolution beyond genotypes with a new lineage classification nomenclature. Pending submission.
+Chrispin Chaguza, Celeste M. Donato, Chimwemwe Mhango, Arox W. Kamng’ona, Benjamin Kumwenda, Ernest Matambo, Daniel M. Njeru, A. Duncan Steele, Carl D. Kirkwood, Julius M. Mugweru, Jelle Matthijnssens, Rotavirus lineage designation consensus consortium (RLDCC), Francis E. Dennis, Martin M. Nyaga, and Khuzwayo C. Jere. **Global rotavirus A evolution and genomic epidemiology revealed at high-resolution beyond genotypes with a new lineage classification nomenclature**. Pending submission.
 
