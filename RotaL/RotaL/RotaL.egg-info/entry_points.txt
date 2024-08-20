@@ -1,0 +1,2 @@
+[console_scripts]
+RotaL = RotaL.scripts.RotaL:main

@@ -1,0 +1,12 @@
+LICENSE
+README.md
+pyproject.toml
+RotaL/__init__.py
+RotaL.egg-info/PKG-INFO
+RotaL.egg-info/SOURCES.txt
+RotaL.egg-info/dependency_links.txt
+RotaL.egg-info/entry_points.txt
+RotaL.egg-info/requires.txt
+RotaL.egg-info/top_level.txt
+RotaL/SeqLib/SeqLib.py
+RotaL/cmdOptions/cmdOptions.py
