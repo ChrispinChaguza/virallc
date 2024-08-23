@@ -2,7 +2,7 @@
 
 ## Get the source code
 ```
-git clone https://github.com/ChrispinChaguza/rotavirus.lineage.classification.git
+git clone https://github.com/ChrispinChaguza/RotaL.git
 ```
 
 ## About RotaL
@@ -23,7 +23,7 @@ If you have multiple input FASTA files, you can run RotaL as follows:
 RotaL --sequences input1.fasta input2.fasta input3.fasta --output report.tsv
 ```
 
-When running RotaL for the first time, it will automatically download and setup the rotavirus lineage classification database in the home directory (~/db.rotavirus.lineages/). However, if new lineages or sublineages have been assigned, you can redownload and update your local database as follows:
+When running RotaL for the first time, it will automatically download and setup the RotaL database in the home directory (~/db.rotavirus.lineages/). However, if new lineages or sublineages have been assigned, you can redownload and update your local database as follows:
 ```
 RotaL --sequences input.fasta --output report.tsv --updatedb
 ```
@@ -49,5 +49,5 @@ In addition, the user can specify "--nucseq" or "-n" option to show nucleotide s
 Chrispin Chaguza, Chimwemwe Mhango, A. Duncan Steele, Carl D. Kirkwood, Jelle Matthijnssens, Francis E. Dennis, Martin M. Nyaga, Celeste M. Donato, and Khuzwayo C. Jere. ***RotaL: A Python package for consistent assignment of rotavirus A lineages***. Pending submission. 
 
 
-Chrispin Chaguza, Celeste M. Donato, Chimwemwe Mhango, Milton Mogotsi, Humphreys Mwenda, Nkosazana Shange, Samuel Nii Kpakpo Mingle, Ernest Matambo, Julius M. Mugweru, Flywell Kawonga, Landilani Gauti, Arox W. Kamng’ona, Benjamin Kumwenda, Chantal Ama Agbemabiese, A. Duncan Steele, Carl D. Kirkwood, Jelle Matthijnssens, Surveillance of Antigenic Cartography of Enteric Viruses (SACEV), Rotavirus Lineage Classification Consortium (RLCC), Daniel M. Njeru, Francis E. Dennis, Martin M. Nyaga, and Khuzwayo C. Jere. ***Global rotavirus A evolution and genomic epidemiology revealed at high resolution beyond genotypes with a new lineage classification nomenclature***. Pending submission.
+Chrispin Chaguza, Celeste M. Donato, Chimwemwe Mhango, Milton Mogotsi, Humphreys Mwenda, Nkosazana Shange, Samuel Nii Kpakpo Mingle, Ernest Matambo, Julius M. Mugweru, Flywell Kawonga, Landilani Gauti, Arox W. Kamng’ona, Benjamin Kumwenda, Chantal Ama Agbemabiese, A. Duncan Steele, Carl D. Kirkwood, Jelle Matthijnssens, Surveillance of Antigenic Cartography of Enteric Viruses (SACEV), RotaL Consortium (RLCC), Daniel M. Njeru, Francis E. Dennis, Martin M. Nyaga, and Khuzwayo C. Jere. ***Global rotavirus A evolution and genomic epidemiology revealed at high resolution beyond genotypes with a new lineage classification nomenclature***. Pending submission.
 
