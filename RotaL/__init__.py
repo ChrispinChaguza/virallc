@@ -31,7 +31,7 @@ def main():
     if (not os.path.exists(dbpath)) or (cmdOptionsVals['updatedb']):
         os.makedirs(dbpath,exist_ok=True)
 
-        downloadBasePath = "https://raw.githubusercontent.com/ChrispinChaguza/rotavirus.lineage.classification/main/db.rotavirus.lineages/"
+        downloadBasePath = "https://raw.githubusercontent.com/ChrispinChaguza/RotaL/main/db.rotavirus.lineages/"
         
         url = [downloadBasePath+"RVA.RefSeqs.db.mfa",
                 downloadBasePath+"NSP1.db.final.fasta",
