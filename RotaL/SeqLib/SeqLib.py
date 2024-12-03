@@ -9,6 +9,46 @@ from operator import itemgetter
 
 dbpath = os.path.expanduser("~/db.rotavirus.lineages/")
 
+def dbLocation():
+    downloadBasePath = "https://raw.githubusercontent.com/ChrispinChaguza/RotaL/main/db.rotavirus.lineages/"
+        
+    url = [downloadBasePath+"RVA.RefSeqs.db.mfa",
+        downloadBasePath+"NSP1.db.final.fasta",
+        downloadBasePath+"NSP2.db.final.fasta",
+        downloadBasePath+"NSP3.db.final.fasta",
+        downloadBasePath+"NSP4.db.final.fasta",
+        downloadBasePath+"NSP5.db.final.fasta",
+        downloadBasePath+"VP1.db.final.fasta",
+        downloadBasePath+"VP2.db.final.fasta",
+        downloadBasePath+"VP3.db.final.fasta",
+        downloadBasePath+"VP4.db.final.fasta",
+        downloadBasePath+"VP6.db.final.fasta",
+        downloadBasePath+"VP7.db.final.fasta",
+        downloadBasePath+"NSP1.db.final.aln",
+        downloadBasePath+"NSP2.db.final.aln",
+        downloadBasePath+"NSP3.db.final.aln",
+        downloadBasePath+"NSP4.db.final.aln",
+        downloadBasePath+"NSP5.db.final.aln",
+        downloadBasePath+"VP1.db.final.aln",
+        downloadBasePath+"VP2.db.final.aln",
+        downloadBasePath+"VP3.db.final.aln",
+        downloadBasePath+"VP4.db.final.aln",
+        downloadBasePath+"VP6.db.final.aln",
+        downloadBasePath+"VP7.db.final.aln",
+        downloadBasePath+"NSP1.db.final.lineages.tsv",
+        downloadBasePath+"NSP2.db.final.lineages.tsv",
+        downloadBasePath+"NSP3.db.final.lineages.tsv",
+        downloadBasePath+"NSP4.db.final.lineages.tsv",
+        downloadBasePath+"NSP5.db.final.lineages.tsv",
+        downloadBasePath+"VP1.db.final.lineages.tsv",
+        downloadBasePath+"VP2.db.final.lineages.tsv",
+        downloadBasePath+"VP3.db.final.lineages.tsv",
+        downloadBasePath+"VP4.db.final.lineages.tsv",
+        downloadBasePath+"VP6.db.final.lineages.tsv",
+        downloadBasePath+"VP7.db.final.lineages.tsv"]
+
+    return(url)
+
 def LoadSeqAlignment(refSeqName):
     refAlignObj = {}
 
@@ -197,17 +237,17 @@ def GetSeqSeqForSegments(segmentName):
         return(False)
 
 def GetLineageThresholds(segmentName):
-    thresholdPID = {"NSP1":[0.79,0.95],
-                    "NSP2":[0.86,0.96],
-                    "NSP3":[0.86,0.95],
-                    "NSP4":[0.85,0.95],
-                    "NSP5":[0.91,0.96],
-                    "VP1":[0.83,0.96],
-                    "VP2":[0.84,0.95],
-                    "VP3":[0.80,0.96],
-                    "VP4":[0.80,0.95],
-                    "VP6":[0.86,0.96],
-                    "VP7":[0.79,0.95]};
+    thresholdPID = {"NSP1":[0.94,0.98],
+                    "NSP2":[0.94,0.98],
+                    "NSP3":[0.94,0.98],
+                    "NSP4":[0.94,0.98],
+                    "NSP5":[0.94,0.98],
+                    "VP1":[0.93,0.97],
+                    "VP2":[0.93,0.97],
+                    "VP3":[0.93,0.97],
+                    "VP4":[0.93,0.97],
+                    "VP6":[0.93,0.97],
+                    "VP7":[0.93,0.97]};
 
     return(thresholdPID[segmentName])
 
@@ -288,7 +328,7 @@ def GetLineage(seqFastaFile):
 
             assignedLineageName = ""
             assignedLineageType = ""
-            assignedLineageInstr = ""
+            assignedLineageInfo = ""
 
             coverageFlag = ""
             contactDetails = "chrispin.chaguza@gmail.com"
@@ -297,18 +337,18 @@ def GetLineage(seqFastaFile):
                 if closestMatchedRefSeq['seqMatches'] >= GetLineageThresholds(blastResults['qseqid'])[1]*100:
                     assignedLineageName = LineageName 
                     assignedLineageType = "Known lineage"
-                    assignedLineageInstr = "---"
+                    assignedLineageInfo = "---"
                     assignedClosestLineage = LineageName
                 else:
                     assignedLineageName = str(LineageName)+str(" [Novel?]")
                     assignedLineageType = "Potential new sublineage"
                     assignedClosestLineage = LineageName
-                    assignedLineageInstr = "Submit full sequence to curators if coverage >85%"
+                    assignedLineageInfo = "Submit full sequence to curators if coverage >85%"
             else:
                 assignedLineageName = str(LineageName)+str(" [Novel?]")
                 assignedLineageType = "Potential new lineage"
                 assignedClosestLineage = LineageName
-                assignedLineageInstr = "Submit full sequence to curators if coverage >85%"
+                assignedLineageInfo = "Submit full sequence to curators if coverage >85%"
 
             if closestMatchedRefSeq['seqCoverage'] >= 85:
                 coverageFlag = "Excellent (lineage calls highly accurate)"
@@ -322,7 +362,7 @@ def GetLineage(seqFastaFile):
             assignedLineageReport[tmpSeqName] = {"seqFastaFile": seqFastaFile, "seqName": tmpSeqName, "segment": blastResults['qseqid'], "assignedLineageName": assignedLineageName,
                 "assignedLineageType": assignedLineageType, "closestMatchedRefSeq": closestMatchedRefSeq['closestSeqName'],
                 "closestMatchIdentity": closestMatchedRefSeq['seqMatches'], "closestMatchCoverage": closestMatchedRefSeq['seqCoverage'],
-                "coverageFlag": coverageFlag, "assignedLineageInstr": assignedLineageInstr, "contactDetails": contactDetails, "seq": str(seqFastaItem.seq).upper()}
+                "coverageFlag": coverageFlag, "assignedLineageInfo": assignedLineageInfo, "contactDetails": contactDetails, "seq": str(seqFastaItem.seq).upper()}
 
             os.remove(outSeqAlignTMP)
 

@@ -31,44 +31,7 @@ def main():
     if (not os.path.exists(dbpath)) or (cmdOptionsVals['updatedb']):
         os.makedirs(dbpath,exist_ok=True)
 
-        downloadBasePath = "https://raw.githubusercontent.com/ChrispinChaguza/RotaL/main/db.rotavirus.lineages/"
-        
-        url = [downloadBasePath+"RVA.RefSeqs.db.mfa",
-                downloadBasePath+"NSP1.db.final.fasta",
-                downloadBasePath+"NSP2.db.final.fasta",
-                downloadBasePath+"NSP3.db.final.fasta",
-                downloadBasePath+"NSP4.db.final.fasta",
-                downloadBasePath+"NSP5.db.final.fasta",
-                downloadBasePath+"VP1.db.final.fasta",
-                downloadBasePath+"VP2.db.final.fasta",
-                downloadBasePath+"VP3.db.final.fasta",
-                downloadBasePath+"VP4.db.final.fasta",
-                downloadBasePath+"VP6.db.final.fasta",
-                downloadBasePath+"VP7.db.final.fasta",
-                downloadBasePath+"NSP1.db.final.aln",
-                downloadBasePath+"NSP2.db.final.aln",
-                downloadBasePath+"NSP3.db.final.aln",
-                downloadBasePath+"NSP4.db.final.aln",
-                downloadBasePath+"NSP5.db.final.aln",
-                downloadBasePath+"VP1.db.final.aln",
-                downloadBasePath+"VP2.db.final.aln",
-                downloadBasePath+"VP3.db.final.aln",
-                downloadBasePath+"VP4.db.final.aln",
-                downloadBasePath+"VP6.db.final.aln",
-                downloadBasePath+"VP7.db.final.aln",
-                downloadBasePath+"NSP1.db.final.lineages.tsv",
-                downloadBasePath+"NSP2.db.final.lineages.tsv",
-                downloadBasePath+"NSP3.db.final.lineages.tsv",
-                downloadBasePath+"NSP4.db.final.lineages.tsv",
-                downloadBasePath+"NSP5.db.final.lineages.tsv",
-                downloadBasePath+"VP1.db.final.lineages.tsv",
-                downloadBasePath+"VP2.db.final.lineages.tsv",
-                downloadBasePath+"VP3.db.final.lineages.tsv",
-                downloadBasePath+"VP4.db.final.lineages.tsv",
-                downloadBasePath+"VP6.db.final.lineages.tsv",
-                downloadBasePath+"VP7.db.final.lineages.tsv"]
-
-        for urlFileName in url:
+        for urlFileName in SeqLib.dbLocation():
             print("Downloading and setting up the rotavirus lineage classification database...",end="\r")
             time.sleep(0.5)
             sys.stdout.flush()
@@ -84,31 +47,31 @@ def main():
             
     with open(cmdOptionsVals['outputLineageFile'],"w") as outputLineageHandle:
         if cmdOptionsVals['includeSequence']:
-            lineageReportHeader = "seqFastaFile{sepChar}" \
-                                        "seqName{sepChar}" \
-                                        "VirusName{sepChar}" \
-                                        "segment{sepChar}" \
-                                        "assignedLineageName{sepChar}" \
-                                        "assignedLineageType{sepChar}" \
-                                        "closestMatchedRefSeq{sepChar}" \
-                                        "closestMatchIdentity{sepChar}" \
-                                        "closestMatchCoverage{sepChar}" \
-                                        "coverageFlag{sepChar}" \
-                                        "assignedLineageInstr{sepChar}" \
-                                        "nucSequence\n".format(sepChar=cmdOptionsVals['csvOutput'])
+            lineageReportHeader = str(cmdOptionsVals['csvOutput']).join(["seqFastaFile", \
+                                        "seqName", \
+                                        "VirusName", \
+                                        "segment", \
+                                        "assignedLineageName", \
+                                        "assignedLineageType", \
+                                        "closestMatchedRefSeq", \
+                                        "closestMatchIdentity", \
+                                        "closestMatchCoverage", \
+                                        "coverageFlag", \
+                                        "assignedLineageInfo", \
+                                        "nucSequence","\n"])
         else:
-            lineageReportHeader = "seqFastaFile{sepChar}" \
-                                        "seqName{sepChar}" \
-                                        "VirusName{sepChar}" \
-                                        "segment{sepChar}" \
-                                        "assignedLineageName{sepChar}" \
-                                        "assignedLineageType{sepChar}" \
-                                        "closestMatchedRefSeq{sepChar}" \
-                                        "closestMatchIdentity{sepChar}" \
-                                        "closestMatchCoverage{sepChar}" \
-                                        "coverageFlag{sepChar}" \
-                                        "assignedLineageInstr{sepChar}" \
-                                        "\n".format(sepChar=cmdOptionsVals['csvOutput'])
+            lineageReportHeader = str(cmdOptionsVals['csvOutput']).join(["seqFastaFile", \
+                                        "seqName", \
+                                        "VirusName", \
+                                        "segment", \
+                                        "assignedLineageName", \
+                                        "assignedLineageType", \
+                                        "closestMatchedRefSeq", \
+                                        "closestMatchIdentity", \
+                                        "closestMatchCoverage", \
+                                        "coverageFlag", \
+                                        "assignedLineageInfo", \
+                                        "\n"])
 
         outputLineageHandle.write(lineageReportHeader)
 
@@ -141,18 +104,18 @@ def main():
                         for eachSeqLineage in assignedLineages.keys():
                             if cmdOptionsVals['includeSequence']:
                                 lineageReport = assignedLineages[eachSeqLineage]
-                                lineageReportSummary = "{seqFastaFile}{sepChar}" \
-                                        "{seqName}{sepChar}" \
-                                        "{segment}{sepChar}" \
-                                        "{VirusName}{sepChar}" \
-                                        "{assignedLineageName}{sepChar}" \
-                                        "{assignedLineageType}{sepChar}" \
-                                        "{closestMatchedRefSeq}{sepChar}" \
-                                        "{closestMatchIdentity}{sepChar}" \
-                                        "{closestMatchCoverage}{sepChar}" \
-                                        "{coverageFlag}{sepChar}" \
-                                        "{assignedLineageInstr}{sepChar}" \
-                                        "\n".format(seqFastaFile=seqFileName,
+                                lineageReportSummary = str(cmdOptionsVals['csvOutput']).join(["{seqFastaFile}", \
+                                        "{seqName}", \
+                                        "{segment}", \
+                                        "{VirusName}", \
+                                        "{assignedLineageName}", \
+                                        "{assignedLineageType}", \
+                                        "{closestMatchedRefSeq}", \
+                                        "{closestMatchIdentity}", \
+                                        "{closestMatchCoverage}", \
+                                        "{coverageFlag}", \
+                                        "{assignedLineageInfo}", \
+                                        "\n"]).format(seqFastaFile=seqFileName,
                                       seqName=lineageReport['seqName'],VirusName="Rotavirus A",
                                 segment=lineageReport['segment'],
                                 assignedLineageName=lineageReport['assignedLineageName'],
@@ -161,24 +124,24 @@ def main():
                                 closestMatchIdentity=round(lineageReport['closestMatchIdentity'],2),
                                 closestMatchCoverage=round(lineageReport['closestMatchCoverage'],2),
                                 coverageFlag=lineageReport['coverageFlag'],
-                                assignedLineageInstr=lineageReport['assignedLineageInstr'],
+                                assignedLineageInfo=lineageReport['assignedLineageInfo'],
                                 contactDetails=lineageReport['contactDetails'],
                                 nucSequence=lineageReport['seq'],
                                 sepChar=cmdOptionsVals['csvOutput'])
                             else:
                                 lineageReport = assignedLineages[eachSeqLineage]
-                                lineageReportSummary = "{seqFastaFile}{sepChar}" \
-                                        "{seqName}{sepChar}" \
-                                        "{VirusName}{sepChar}" \
-                                        "{segment}{sepChar}" \
-                                        "{assignedLineageName}{sepChar}" \
-                                        "{assignedLineageType}{sepChar}" \
-                                        "{closestMatchedRefSeq}{sepChar}" \
-                                        "{closestMatchIdentity}{sepChar}" \
-                                        "{closestMatchCoverage}{sepChar}" \
-                                        "{coverageFlag}{sepChar}" \
-                                        "{assignedLineageInstr}{sepChar}" \
-                                        "\n".format(seqFastaFile=seqFileName,
+                                lineageReportSummary = str(cmdOptionsVals['csvOutput']).join(["{seqFastaFile}", \
+                                        "{seqName}", \
+                                        "{VirusName}", \
+                                        "{segment}", \
+                                        "{assignedLineageName}", \
+                                        "{assignedLineageType}", \
+                                        "{closestMatchedRefSeq}", \
+                                        "{closestMatchIdentity}", \
+                                        "{closestMatchCoverage}", \
+                                        "{coverageFlag}", \
+                                        "{assignedLineageInfo}", \
+                                        "\n"]).format(seqFastaFile=seqFileName,
                                       seqName=lineageReport['seqName'],VirusName="Rotavirus A",
                                 segment=lineageReport['segment'],
                                 assignedLineageName=lineageReport['assignedLineageName'],
@@ -187,7 +150,7 @@ def main():
                                 closestMatchIdentity=round(lineageReport['closestMatchIdentity'],2),
                                 closestMatchCoverage=round(lineageReport['closestMatchCoverage'],2),
                                 coverageFlag=lineageReport['coverageFlag'],
-                                assignedLineageInstr=lineageReport['assignedLineageInstr'],
+                                assignedLineageInfo=lineageReport['assignedLineageInfo'],
                                 contactDetails=lineageReport['contactDetails'],
                                 nucSequence=lineageReport['seq'],
                                 sepChar=cmdOptionsVals['csvOutput'])
