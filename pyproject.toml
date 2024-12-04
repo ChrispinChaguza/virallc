@@ -30,7 +30,7 @@ keywords = ["Rotavirus","Rotavirus A","Lineage classification","Genotype","Subli
 dependencies = [
    "setuptools",
    "toml",
-   "Bio",
+   "biopython",
 ]
 
 [tool.setuptools.packages]
