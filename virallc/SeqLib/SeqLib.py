@@ -103,6 +103,8 @@ def ReadCmdOptions():
                             dest='setupdb',help='Setup implemented databases')
         options.add_argument('--updatedb','-u',action='store_true',default=False,
                             dest='updatedb',help='Update implemented databases')
+        options.add_argument('--version','-v',action='store_true',default=False,
+                            dest='version',help='Show database version')
 
         if len(sys.argv)<=2:
             options=options.parse_args(args=['--help'])
@@ -114,6 +116,9 @@ def ReadCmdOptions():
             sys.exit()
         elif options.setupdb or options.updatedb:
             updateDatabases()
+            sys.exit()
+        elif options.version:
+            showDatabaseVersions()
             sys.exit()
         else:
             sys.exit()
@@ -185,13 +190,33 @@ def showDatabases():
     else:
         for dbnum,db in enumerate(os.listdir(dbpath)):
             if os.path.isdir(os.path.join(dbpath,db)):
-                if (os.path.exists(os.path.join(dbpath,db,"strain.db.info.tsv"))):
+                if (os.path.exists(os.path.join(dbpath,db,"version.txt"))) and (os.path.exists(os.path.join(dbpath,db,"strain.db.info.tsv"))):
                     dbDescription = [i.strip() for i in open(os.path.join(dbpath,db,"strain.db.info.tsv"),"r")][0]
-                    print(f"Database: {dbnum+1}; dbname: {db}; description: {dbDescription}; location: {os.path.join(dbpath,db)}")
+                    dbVersion = [i.strip() for i in open(os.path.join(dbpath,db,"version.txt"),"r")][0]
+                    print(f"Database: {dbnum+1}; dbname: {db}; description: {dbDescription}; version: {dbVersion}; location: {os.path.join(dbpath,db)}")
                 else:
-                    print(f"Database: {dbnum+1}; dbname: {db}; description: None (update databases!); location: {os.path.join(dbpath,db)}")
+                    print(f"Database: {dbnum+1}; dbname: {db}; description: None (update databases!); version: None (update databases!); location: {os.path.join(dbpath,db)}")
             else:
                 pass
+
+    sys.exit()
+
+def showDatabaseVersions():
+    dbpath = getdbLocation()
+    
+    if (not os.path.exists(dbpath)):
+        print("Run viraL database --setupdb to setup the databases")
+    else:
+        for dbnum,db in enumerate(os.listdir(dbpath)):
+            if os.path.isdir(os.path.join(dbpath,db)):
+                if (os.path.exists(os.path.join(dbpath,db,"version.txt"))):
+                    dbVersion = [i.strip() for i in open(os.path.join(dbpath,db,"version.txt"),"r")][0]
+                    print(f"Database: {dbnum+1}; dbname: {db}; version: {dbVersion}")
+                else:
+                    print(f"Database: {dbnum+1}; dbname: {db}; version: None (update databases!)")
+            else:
+                pass
+
     sys.exit()
 
 def getDatabaseDescription():

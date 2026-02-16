@@ -63,6 +63,7 @@ git clone https://github.com/ChrispinChaguza/virallc.git
 The easist way to install ViralLC is using Conda (upcoming!).
 ```
 conda install -c conda-forge virallc
+conda install -c bioconda virallc
 ```
 
 Another way to download ViralLC from GitHub and then manually setup the environment for the package 
