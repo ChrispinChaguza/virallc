@@ -190,8 +190,8 @@ def showDatabases():
     else:
         for dbnum,db in enumerate(os.listdir(dbpath)):
             if os.path.isdir(os.path.join(dbpath,db)):
-                if (os.path.exists(os.path.join(dbpath,db,"version.txt"))) and (os.path.exists(os.path.join(dbpath,db,"strain.db.info.tsv"))):
-                    dbDescription = [i.strip() for i in open(os.path.join(dbpath,db,"strain.db.info.tsv"),"r")][0]
+                if (os.path.exists(os.path.join(dbpath,db,"version.txt"))) and (os.path.exists(os.path.join(dbpath,db,"strain.db.info.txt"))):
+                    dbDescription = [i.strip() for i in open(os.path.join(dbpath,db,"strain.db.info.txt"),"r")][0]
                     dbVersion = [i.strip() for i in open(os.path.join(dbpath,db,"version.txt"),"r")][0]
                     print(f"Database: {dbnum+1}; dbname: {db}; description: {dbDescription}; version: {dbVersion}; location: {os.path.join(dbpath,db)}")
                 else:
@@ -227,10 +227,10 @@ def getDatabaseDescription():
         print("Run viraL database --setupdb to setup the databases")
     else:
         if os.path.isdir(dbpath):
-            if (os.path.exists(os.path.join(dbpath,refdbName,"strain.db.info.tsv"))):
-                dbName = [i.strip() for i in open(os.path.join(dbpath,refdbName,"strain.db.info.tsv"),"r")][0]
+            if (os.path.exists(os.path.join(dbpath,refdbName,"strain.db.info.txt"))):
+                dbName = [i.strip() for i in open(os.path.join(dbpath,refdbName,"strain.db.info.txt"),"r")][0]
             else:
-                print(f"File {os.path.join(dbpath,refdbName,'strain.db.info.tsv')} does not exist (update databases!)")
+                print(f"File {os.path.join(dbpath,refdbName,'strain.db.info.txt')} does not exist (update databases!)")
         else:
             pass
 
@@ -244,8 +244,8 @@ def checkDatabase():
         print("Run 'viraL database --setupdb' to setup the databases for lineage classification")
     else:
         if (os.path.exists(os.path.join(dbpath,refdbName))):
-            if (not os.path.exists(os.path.join(dbpath,refdbName,"strain.db.info.tsv"))):
-                print(f"Database file {os.path.join(dbpath,refdbName,'strain.db.info.tsv')} not found (update database!)")
+            if (not os.path.exists(os.path.join(dbpath,refdbName,"strain.db.info.txt"))):
+                print(f"Database file {os.path.join(dbpath,refdbName,'strain.db.info.txt')} not found (update database!)")
                 sys.exit()
             else:
                 if (not os.path.exists(os.path.join(dbpath,refdbName,"references"))):
