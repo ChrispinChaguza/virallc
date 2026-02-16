@@ -1,53 +1,76 @@
-# RotaL: A Python package for consistent assignment of rotavirus A lineages
+# ViralLC: A package rapid assignment of viral lineage nomenclature
 
 ## Get the source code
 ```
-git clone https://github.com/ChrispinChaguza/RotaL.git
+git clone https://github.com/ChrispinChaguza/virallc.git
 ```
 
-## About RotaL
+## About virallc
+
+## Setup
+
+The easist way to install ViralLC is using Conda (upcoming!).
+```
+conda install -c conda-forge virallc
+```
+
+Another way to download ViralLC from GitHub and then manually setup the environment for the package 
+
+```
+git clone https://github.com/ChrispinChaguza/virallc.git
+cd virallc
+```
+
+Install the requirement packages
+```
+#conda env export > environment.yml
+conda env create -n virallc -f environment.yml 
+```
+
+Follow the instructions below to build and install ViralLC
+
+```
+python -m build 
+pip install --force-reinstall dist/virallc-*.whl 
+```
 
 ## Basic usage
 
-The simplest way to run RotaL is to provide a single or separate multiple input FASTA file containing a single or multiple rotavirus A sequences.
+The simplest way to run virallc is to provide a single or separate multiple input FASTA file containing a single or multiple rotavirus A sequences.
 ```
-RotaL --sequences input.fasta --output report.tsv
+virallc database --sequences input.fasta --output report.tsv
 ```
 Or using the following shorthand options
 ```
-RotaL -s input.fasta -o report.tsv
+virallc assign -s input.fasta -o report.tsv
 ```
 
-If you have multiple input FASTA files, you can run RotaL as follows:
+If you have multiple input FASTA files, you can run virallc as follows:
 ```
-RotaL --sequences input1.fasta input2.fasta input3.fasta --output report.tsv
+virallc assign --sequences input1.fasta input2.fasta input3.fasta --output report.tsv
 ```
 
-When running RotaL for the first time, it will automatically download and setup the RotaL database in the home directory (~/db.rotavirus.lineages/). However, if new lineages or sublineages have been assigned, you can redownload and update your local database as follows:
+When running virallc for the first time, it will automatically download and setup the virallc database in the home directory (~/db.rotavirus.lineages/). However, if new lineages or sublineages have been assigned, you can redownload and update your local database as follows:
 ```
-RotaL --sequences input.fasta --output report.tsv --updatedb
+virallc assign --sequences input.fasta --output report.tsv --updatedb
 ```
 
 Or
 ```
-RotaL -s input.fasta -o report.tsv -u
+virallc assign -s input.fasta -o report.tsv -u
 ```
 
 By default the output report containing the lineage calls will be provided in tab-separated value (TSV) file. To change the format of the output file to comma-separate value (CSV) format, specify "--csv" or "-c" options as follows:
 ```
-RotaL --sequences input.fasta --output report.tsv --csv
+virallc assign --sequences input.fasta --output report.tsv --csv
 ```
 Or
 ```
-RotaL -s input.fasta -o report.tsv -c
+virallc assign -s input.fasta -o report.tsv -c
 ```
 
 In addition, the user can specify "--nucseq" or "-n" option to show nucleotide sequences of the query and closest matching reference sequences in the output report. To silence the output on the terminal, specify 
 "--quiet" or "-q" option.
 
 ## Cite
-Chrispin Chaguza, Chimwemwe Mhango, A. Duncan Steele, Carl D. Kirkwood, Jelle Matthijnssens, Francis E. Dennis, Martin M. Nyaga, Celeste M. Donato, and Khuzwayo C. Jere. ***RotaL: A Python package for consistent assignment of rotavirus A lineages***. Pending submission. 
-
-
-Chrispin Chaguza, Celeste M. Donato, Chimwemwe Mhango, Milton Mogotsi, Humphreys Mwenda, Nkosazana Shange, Samuel Nii Kpakpo Mingle, Ernest Matambo, Julius M. Mugweru, Flywell Kawonga, Landilani Gauti, Arox W. Kamng’ona, Benjamin Kumwenda, Chantal Ama Agbemabiese, A. Duncan Steele, Carl D. Kirkwood, Jelle Matthijnssens, Surveillance of Antigenic Cartography of Enteric Viruses (SACEV), RotaL Consortium (RLCC), Daniel M. Njeru, Francis E. Dennis, Martin M. Nyaga, and Khuzwayo C. Jere. ***Global rotavirus A evolution and genomic epidemiology revealed at high resolution beyond genotypes with a new lineage classification nomenclature***. Pending submission.
-
+To be updated!

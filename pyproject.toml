@@ -2,8 +2,8 @@
 requires = ["setuptools"]
 
 [project]
-name = "RotaL"
-version = "0.0.1"
+name = "virallc"
+version = "1.0.9"
 authors = [
   { name="Chrispin Chaguza", email="chrispin.chaguza@gmail.com" },
 ]
@@ -12,10 +12,10 @@ maintainers = [
   {name = "Chrispin Chaguza", email = "chrispin.chaguza@gmail.com"},
 ]
 
-description = "RotaL: A Python package for consistent assignment of rotavirus A lineages"
+description = "virallc: A Python package for consistent assignment of viral lineages"
 readme = {file = "README.md", content-type = "text/markdown"}
 license = {file = "LICENSE"}
-requires-python = "<=3.8"
+requires-python = ">=3.8"
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
@@ -26,26 +26,34 @@ classifiers = [
     "Intended Audience :: Science/Research",
 ]
 
-keywords = ["Rotavirus","Rotavirus A","Lineage classification","Genotype","Sublineages",]
+keywords = ["Virus","Lineage","Strain typing","Lineage classification","Genotype","Sublineage","Genome"]
 dependencies = [
    "setuptools",
    "toml",
    "biopython",
+   "fsspec",
+   "pandas"
 ]
 
 [tool.setuptools.packages]
 find = {} 
 
 [tool.setuptools]
-py-modules = ["RotaL.cmdOptions.cmdOptions","RotaL.SeqLib.SeqLib","RotaL",]
+py-modules = ["virallc.SeqLib.SeqLib","virallc"]
 
 [project.scripts]
-RotaL = "RotaL:main"
+virallc = "virallc:main"
+alnPairDist = "virallc.scripts.alnPairDist:main"
+cleanFastaSeqs = "virallc.scripts.cleanFastaSeqs:main"
+virallcLineageChecker = "virallc.scripts.virallcLineageChecker:main"
+alnSeqCov = "virallc.scripts.alnSeqCov:main"
+virallcClusters = "virallc.scripts.virallcClusters:main"
+virallcClusters3L = "virallc.scripts.virallcClusters3L:main"
 
 [project.urls]
-Homepage = "https://github.com/ChrispinChaguza/rotavirus.lineage.classification/"
-Repository = "https://github.com/ChrispinChaguza/rotavirus.lineage.classification.git"
-Issues = "https://github.com/ChrispinChaguza/rotavirus.lineage.classification/issues"
-Documentation = "https://github.com/ChrispinChaguza/rotavirus.lineage.classification/"
-Website = "https://github.com/ChrispinChaguza/rotavirus.lineage.classification"
+Homepage = "https://github.com/ChrispinChaguza/virallc/"
+Repository = "https://github.com/ChrispinChaguza/virallc.git"
+Issues = "https://github.com/ChrispinChaguza/virallc/issues"
+Documentation = "https://github.com/ChrispinChaguza/virallc/"
+Website = "https://github.com/ChrispinChaguza/virallc"
 
