@@ -16,7 +16,7 @@ dbpath = str(Path.home().joinpath("viraldb"))
 tmpdirpath = f"tmpR.virallc.{random.randrange(1,1000000)}.{datetime.datetime.now()}".\
                  replace(':','').replace(' ','.').replace(',','.')
 refdbName = ""
-version = "1.0.9"
+version = "1.0.10"
 
 def ReadCmdOptions():
     if len(sys.argv)==1 or not (sys.argv[1] in ["assign","database","version","citation"]):
