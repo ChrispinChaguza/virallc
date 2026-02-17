@@ -22,7 +22,21 @@ git clone https://github.com/ChrispinChaguza/virallc.git
 cd virallc
 ```
 
-Install the requirement packages
+## Install the requirement packages
+
+ViralLC requires several packages below which can be installed using Conda and Pip:
+
+conda install -c bioconda mafft=7.526 -y
+conda install -c conda-forge python=3.14.2 -y
+conda install -c bioconda nextclade=3.18.1 -y
+conda install -c conda-forge biopython=1.86 -y
+conda install -c bioconda blast=2.16.0 -y
+conda install -c conda-forge pandas=3.0.0 -y
+conda install -c conda-forge networkx=3.6.1 -y
+
+pip install fsspec==2026.2.0
+
+Alternatively, the packages can be installed as shown below.
 ```
 #conda env export > environment.yml
 conda env create -n virallc -f environment.yml 
