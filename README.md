@@ -43,7 +43,6 @@ conda env create -n virallc -f environment.yml
 ```
 
 Follow the instructions below to build and install ViralLC
-
 ```
 python -m build 
 pip install --force-reinstall dist/virallc-*.whl 
