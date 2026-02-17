@@ -1,5 +1,0 @@
-setuptools
-toml
-biopython
-fsspec
-pandas
