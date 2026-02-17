@@ -39,35 +39,26 @@ pip install --force-reinstall dist/virallc-*.whl
 
 The simplest way to run virallc is to provide a single or separate multiple input FASTA file containing a single or multiple rotavirus A sequences.
 ```
-virallc database --sequences input.fasta --output report.tsv
+virallc database --sequences input.fasta --output report.tsv --database dbname
 ```
 Or using the following shorthand options
 ```
-virallc assign -s input.fasta -o report.tsv
+virallc assign -s input.fasta -o report.tsv -d dbname
 ```
 
 If you have multiple input FASTA files, you can run virallc as follows:
 ```
-virallc assign --sequences input1.fasta input2.fasta input3.fasta --output report.tsv
+virallc assign --sequences input1.fasta input2.fasta input3.fasta --output report.tsv --database dbname
 ```
 
 When running virallc for the first time, it will automatically download and setup the virallc database in the home directory (~/db.rotavirus.lineages/). However, if new lineages or sublineages have been assigned, you can redownload and update your local database as follows:
 ```
-virallc assign --sequences input.fasta --output report.tsv --updatedb
+virallc database --updatedb
 ```
 
 Or
 ```
-virallc assign -s input.fasta -o report.tsv -u
-```
-
-By default the output report containing the lineage calls will be provided in tab-separated value (TSV) file. To change the format of the output file to comma-separate value (CSV) format, specify "--csv" or "-c" options as follows:
-```
-virallc assign --sequences input.fasta --output report.tsv --csv
-```
-Or
-```
-virallc assign -s input.fasta -o report.tsv -c
+virallc database -u
 ```
 
 In addition, the user can specify "--nucseq" or "-n" option to show nucleotide sequences of the query and closest matching reference sequences in the output report. To silence the output on the terminal, specify 
