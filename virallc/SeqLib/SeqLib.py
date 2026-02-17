@@ -16,15 +16,13 @@ dbpath = str(Path.home().joinpath("viraldb"))
 tmpdirpath = f"tmpR.virallc.{random.randrange(1,1000000)}.{datetime.datetime.now()}".\
                  replace(':','').replace(' ','.').replace(',','.')
 refdbName = ""
-version = "1.0.14"
-name = "Chrispin Chaguza"
-email = "Chrispin.Chaguza@STJUDE.ORG"
+version = "1.0.16"
 
 def ReadCmdOptions():
+
     if len(sys.argv)==1 or not (sys.argv[1] in ["assign","database","version","citation"]):
         print(f"Program: virallc (program for rapid viral lineage assignment)\n"\
-               "Version: {version}\n"\
-               "Contact: {name} ({email})\n\n"\
+               "Contact: Chrispin Chaguza (Chrispin.Chaguza@STJUDE.ORG)\n\n"\
                "Usage:   virallc <command> [options]\n\n"\
                "Command: assign      assigns lineages to viral sequences\n"\
                "         database    setup, show, and update implemented databases\n"\

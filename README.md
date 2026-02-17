@@ -34,7 +34,7 @@ conda install -c bioconda blast=2.16.0 -y
 conda install -c conda-forge pandas=3.0.0 -y
 conda install -c conda-forge networkx=3.6.1 -y
 
-pip install fsspec==2026.2.0
+pip install gitdir==1.2.7
 
 Alternatively, the packages can be installed as shown below.
 ```
@@ -52,7 +52,7 @@ pip install --force-reinstall dist/virallc-*.whl
 
 The simplest way to run virallc is to provide a single or separate multiple input FASTA file containing a single or multiple rotavirus A sequences.
 ```
-virallc database --sequences input.fasta --output report.tsv --database dbname
+virallc assign --sequences input.fasta --output report.tsv --database dbname
 ```
 Or using the following shorthand options
 ```
@@ -66,7 +66,11 @@ virallc assign --sequences input1.fasta input2.fasta input3.fasta --output repor
 
 When running virallc for the first time, it will automatically download and setup the virallc database in the home directory (~/db.rotavirus.lineages/). However, if new lineages or sublineages have been assigned, you can redownload and update your local database as follows:
 ```
+virallc database --setupdb
+
 virallc database --updatedb
+
+virallc database --version
 ```
 
 Or

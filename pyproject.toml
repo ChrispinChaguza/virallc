@@ -3,7 +3,7 @@ requires = ["setuptools"]
 
 [project]
 name = "virallc"
-version = "1.0.14"
+version = "1.0.16"
 authors = [
   { name="Chrispin Chaguza", email="chrispin.chaguza@gmail.com" },
 ]

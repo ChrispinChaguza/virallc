@@ -1,5 +1,5 @@
 sequence	name	database	reference	lineage	category	closestmatch	identity	coverage	quality	description	
-../tmpSS.mfa	OQ596318.1	Rotavirus A	VP3	𝝀.2.1	Known lineage	OQ596318.1	100.0	98.85	Excellent		
+../tmpSS.mfa	OQ596318.1	Rotavirus A	VP3	\𝝀.2.1	Known lineage	OQ596318.1	100.0	98.85	Excellent		
 ../tmpSS.mfa	OR125126.1	Rotavirus A	VP3	𝝀.1.4	Known lineage	OR125126.1	100.0	98.04	Excellent		
 ../tmpSS.mfa	LC727978.1	Rotavirus A	VP3	𝝀.1.33	Known lineage	LC727978.1	100.0	99.5	Excellent		
 ../tmpSS.mfa	OQ333051.1	Rotavirus A	VP3	𝝀.86	Known lineage	OQ333051.1	100.0	96.0	Excellent		
