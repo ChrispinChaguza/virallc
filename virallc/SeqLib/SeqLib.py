@@ -16,13 +16,15 @@ dbpath = str(Path.home().joinpath("viraldb"))
 tmpdirpath = f"tmpR.virallc.{random.randrange(1,1000000)}.{datetime.datetime.now()}".\
                  replace(':','').replace(' ','.').replace(',','.')
 refdbName = ""
-version = "1.0.13"
+version = "1.0.14"
+name = "Chrispin Chaguza"
+email = "Chrispin.Chaguza@STJUDE.ORG"
 
 def ReadCmdOptions():
     if len(sys.argv)==1 or not (sys.argv[1] in ["assign","database","version","citation"]):
         print(f"Program: virallc (program for rapid viral lineage assignment)\n"\
-               "Version: 1.0.0\n"\
-               "Contact: Chrispin Chaguza (Chrispin.Chaguza@STJUDE.ORG)\n\n"\
+               "Version: {version}\n"\
+               "Contact: {name} ({email})\n\n"\
                "Usage:   virallc <command> [options]\n\n"\
                "Command: assign      assigns lineages to viral sequences\n"\
                "         database    setup, show, and update implemented databases\n"\
@@ -174,8 +176,13 @@ def updateDatabases():
         os.makedirs(dbpath,exist_ok=True)
 
     try:
-        gitfile = fsspec.filesystem("github",org="chrispinchaguza",repo="virallc")
-        gitfile.get(gitfile.ls("viraldb"), dbpath)
+        result = os.system(f"rm -rf {dbpath} >/dev/null 2>&1")
+        result = os.system(f"gitdir https://github.com/ChrispinChaguza/virallc/tree/main/viraldb >/dev/null 2>&1")
+        result = os.system(f"mv viraldb {dbpath} >/dev/null 2>&1")
+        result = os.system(f"rm -rf {os.path.join(dbpath,"viraldb")} >/dev/null 2>&1")
+
+        #gitfile = fsspec.filesystem("github",org="chrispinchaguza",repo="virallc")
+        #gitfile.get(gitfile.ls("viraldb"), dbpath)
     except:
         print("Failed to update databases (check the internet?)")
         sys.exit()

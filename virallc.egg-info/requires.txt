@@ -1,5 +1,5 @@
 setuptools
 toml
 biopython
-fsspec
+gitdir
 pandas
