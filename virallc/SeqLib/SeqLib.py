@@ -9,7 +9,6 @@ import argparse
 import shutil
 import urllib.request
 import concurrent.futures
-import fsspec
 from pathlib import Path
 
 dbpath = Path.home().joinpath("viraldb")
