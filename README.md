@@ -1,15 +1,13 @@
 # ViralLC: A package rapid assignment of viral lineage nomenclature
 
-## Get the source code
+## Getting the ViralLC source code
 ```
 git clone https://github.com/ChrispinChaguza/virallc.git
 ```
 
-## About virallc
+## Setup ViralLC software on a local machine
 
-## Setup
-
-### Installing using Pip
+### Installing ViralLC using Pip
 
 The easist way to install the latest version of ViralLC is using Pip
 ```
@@ -21,19 +19,17 @@ Here is a command to install a specific version of ViralLC using Pip
 pip install virallc==1.0.17
 ```
 
-### Installing using Conda
+### Installing ViralLC using Conda
 
 Installation using Conda (upcoming!).
 ```
 conda install -c conda-forge virallc
 ```
-
-Or
 ```
 conda install -c bioconda virallc
 ```
 
-### Installing directly from Github
+### Installing ViralLC directly from Github
 
 First, download ViralLC from GitHub and then manually setup the environment for the package 
 
@@ -53,7 +49,6 @@ conda install -c bioconda blast=2.16.0 -y
 conda install -c conda-forge pandas=3.0.0 -y
 conda install -c conda-forge networkx=3.6.1 -y
 ```
-
 ```
 pip install gitdir==1.2.7
 pip install build
@@ -80,7 +75,7 @@ Here is a command to setup the database after installing the tool
 ```
 virallc database --setupdb
 ```
-Or
+
 ```
 virallc database -s
 ```
@@ -89,7 +84,6 @@ Here is a command to update a database (if corrupt, not found in the local machi
 ```
 virallc database --updatedb
 ```
-Or
 ```
 virallc database -u
 ```
@@ -98,7 +92,6 @@ Here is a command to check version of the databases installed locally
 ```
 virallc database --version
 ```
-Or
 ```
 virallc database -v
 ```
@@ -109,8 +102,6 @@ The simplest way to run virallc is to provide a single or separate multiple inpu
 ```
 virallc assign --in input.fasta --out report.tsv --db dbname
 ```
-
-Or
 ```
 virallc assign -i input.fasta -o report.tsv -d dbname
 ```
@@ -119,8 +110,6 @@ To assign lineages to several sequences in a multi-FASTA file (each individual s
 ```
 virallc assign --in input1.fasta input2.fasta input3.fasta --out report.tsv --db dbname
 ```
-
-Or
 ```
 virallc assign -i input1.fasta input2.fasta input3.fasta -o report.tsv -d dbname
 ```
@@ -129,8 +118,6 @@ To include the sequence in the output:
 ```
 virallc assign --in input1.fasta input2.fasta input3.fasta --out report.tsv --db dbname --seq
 ```
-
-Or
 ```
 virallc assign -i input1.fasta input2.fasta input3.fasta -o report.tsv -d dbname -s
 ```
@@ -139,8 +126,6 @@ To overwrite the output files:
 ```
 virallc assign --in input1.fasta input2.fasta input3.fasta --out report.tsv --db dbname --seq --force
 ```
-
-Or
 ```
 virallc assign -i input1.fasta input2.fasta input3.fasta -o report.tsv -d dbname -s -f
 ```
@@ -149,8 +134,6 @@ To assign lineages faster using more CPUs/threads:
 ```
 virallc assign --in input1.fasta input2.fasta input3.fasta --out report.tsv --db dbname --seq --threads 10
 ```
-
-Or
 ```
 virallc assign -i input1.fasta input2.fasta input3.fasta -o report.tsv -d dbname -s -t 10
 ```
@@ -159,8 +142,6 @@ To suppress the results on the terminal:
 ```
 virallc assign --in input1.fasta input2.fasta input3.fasta --out report.tsv --db dbname --seq --threads 10 --quiet
 ```
-
-Or
 ```
 virallc assign -i input1.fasta input2.fasta input3.fasta -o report.tsv -d dbname -s -t 10 -q
 ```
