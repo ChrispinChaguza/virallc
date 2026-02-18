@@ -16,7 +16,7 @@ dbpath = Path.home().joinpath("viraldb")
 tmpdirpath = f"tmpR.virallc.{random.randrange(1,1000000)}.{datetime.datetime.now()}".\
                  replace(':','').replace(' ','.').replace(',','.')
 refdbName = ""
-version = "1.0.17"
+version = "1.0.18"
 
 def ReadCmdOptions():
 

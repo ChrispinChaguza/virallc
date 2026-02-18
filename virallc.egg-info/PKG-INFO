@@ -1,6 +1,6 @@
 Metadata-Version: 2.4
 Name: virallc
-Version: 1.0.17
+Version: 1.0.18
 Summary: ViralLC: A Python package for consistent assignment of viral lineages
 Author-email: Chrispin Chaguza <chrispin.chaguza@gmail.com>
 Maintainer-email: Chrispin Chaguza <chrispin.chaguza@gmail.com>
@@ -214,6 +214,13 @@ virallc assign --in input1.fasta input2.fasta input3.fasta --out report.tsv --db
 Or
 ```
 virallc assign -i input1.fasta input2.fasta input3.fasta -o report.tsv -d dbname -s -t 10 -q
+```
+
+### Example dataset (Rotavirus A)
+
+Here is a command to assign rotavirus A lineages to samples in *example* directory
+```
+virallc assign -i example.fna -o report.tsv -d RotavirusA
 ```
 
 ### Software version
