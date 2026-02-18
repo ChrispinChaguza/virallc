@@ -165,6 +165,13 @@ Or
 virallc assign -i input1.fasta input2.fasta input3.fasta -o report.tsv -d dbname -s -t 10 -q
 ```
 
+### Example dataset (Rotavirus A)
+
+Here is a command to assign rotavirus A lineages to samples in *example* directory
+```
+virallc assign -i example.fna -o report.tsv -d RotavirusA
+```
+
 ### Software version
 
 Run the command below to show the software version
