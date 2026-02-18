@@ -12,11 +12,11 @@ import concurrent.futures
 import fsspec
 from pathlib import Path
 
-dbpath = str(Path.home().joinpath("viraldb"))
+dbpath = Path.home().joinpath("viraldb")
 tmpdirpath = f"tmpR.virallc.{random.randrange(1,1000000)}.{datetime.datetime.now()}".\
                  replace(':','').replace(' ','.').replace(',','.')
 refdbName = ""
-version = "1.0.16"
+version = "1.0.17"
 
 def ReadCmdOptions():
 
@@ -169,18 +169,22 @@ def updateDatabases():
 
     if os.path.exists(dbpath):
         shutil.rmtree(dbpath)
-        os.makedirs(dbpath,exist_ok=True)
     else:
-        os.makedirs(dbpath,exist_ok=True)
+        pass
 
     try:
-        result = os.system(f"rm -rf {dbpath} >/dev/null 2>&1")
-        result = os.system(f"gitdir https://github.com/ChrispinChaguza/virallc/tree/main/viraldb >/dev/null 2>&1")
-        result = os.system(f"mv viraldb {dbpath} >/dev/null 2>&1")
-        result = os.system(f"rm -rf {os.path.join(dbpath,"viraldb")} >/dev/null 2>&1")
+        result = subprocess.call(["gitdir","https://github.com/ChrispinChaguza/virallc/tree/main/viraldb"],
+                stdout=subprocess.DEVNULL,stderr=subprocess.STDOUT)
 
-        #gitfile = fsspec.filesystem("github",org="chrispinchaguza",repo="virallc")
-        #gitfile.get(gitfile.ls("viraldb"), dbpath)
+        if os.path.exists(dbpath.stem):
+            shutil.move(dbpath.stem,dbpath)
+        else:
+            pass
+
+        if os.path.exists(os.path.join(dbpath,dbpath.stem)):
+            shutil.rmtree(os.path.join(dbpath,dbpath.stem))
+        else:
+            pass
     except:
         print("Failed to update databases (check the internet?)")
         sys.exit()

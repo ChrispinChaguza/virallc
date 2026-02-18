@@ -3,7 +3,7 @@ requires = ["setuptools"]
 
 [project]
 name = "virallc"
-version = "1.0.16"
+version = "1.0.17"
 authors = [
   { name="Chrispin Chaguza", email="chrispin.chaguza@gmail.com" },
 ]
@@ -12,7 +12,7 @@ maintainers = [
   {name = "Chrispin Chaguza", email = "chrispin.chaguza@gmail.com"},
 ]
 
-description = "virallc: A Python package for consistent assignment of viral lineages"
+description = "ViralLC: A Python package for consistent assignment of viral lineages"
 readme = {file = "README.md", content-type = "text/markdown"}
 license = {file = "LICENSE"}
 requires-python = ">=3.8"

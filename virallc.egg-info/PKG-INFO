@@ -1,7 +1,7 @@
 Metadata-Version: 2.4
 Name: virallc
-Version: 1.0.16
-Summary: virallc: A Python package for consistent assignment of viral lineages
+Version: 1.0.17
+Summary: ViralLC: A Python package for consistent assignment of viral lineages
 Author-email: Chrispin Chaguza <chrispin.chaguza@gmail.com>
 Maintainer-email: Chrispin Chaguza <chrispin.chaguza@gmail.com>
 License: MIT License
