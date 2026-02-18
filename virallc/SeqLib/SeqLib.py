@@ -58,8 +58,8 @@ def ReadCmdOptions():
         options.add_argument('--force','-f',action='store_true',default=False,
                             dest='force',help='Force overwrite output file')
         options.add_argument('--threads','-t',action='store',required=False,nargs=1,
-                            metavar='threads',dest='threads',default=1,
-                            help='Number of threads (default=1)')
+                            metavar='threads',dest='threads',default=5,
+                            help='Number of threads (default=5)')
         options.add_argument('--quiet','-q',action='store_false',default=True,
                             dest='verbose',help='Show viral lineage assignment progress')
 
