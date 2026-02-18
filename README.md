@@ -16,7 +16,7 @@ pip install virallc
 
 Here is a command to install a specific version of ViralLC using Pip
 ```
-pip install virallc==1.0.18
+pip install virallc==1.0.19
 ```
 
 ### Installing ViralLC using Conda
