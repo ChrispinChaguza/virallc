@@ -221,14 +221,14 @@ virallc citation
 
 ### Reference
 ```
-Chrispin Chaguza, GitHub, https://github.com/ChrispinChaguza/virallc.git
+Chrispin Chaguza, ViralLC: A package for rapid assignment of viral lineage nomenclature, GitHub, https://github.com/ChrispinChaguza/virallc.git
 ```
 
 ### Additional references
 
 The following external software packages are run as part of the virallc software package.
 ```
-gitdir, https://github.com/sdushantha/gitdir
+gitdir, GitHub, https://github.com/sdushantha/gitdir
 ```
 ```
 Altschul SF, Gish W, Miller W, Myers EW, Lipman DJ. Basic local alignment search tool. J Mol Biol. 1990 Oct 5;215(3):403-10. doi: 10.1016/S0022-2836(05)80360-2. PMID: 2231712.
