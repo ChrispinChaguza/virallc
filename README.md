@@ -154,6 +154,10 @@ Here is a command to assign rotavirus A lineages to samples in *example* directo
 virallc assign -i example.fna -o report.tsv -d RotavirusA
 ```
 
+### Running ViralLC using Docker
+
+Detailed information on installing ViralLC as a Docker container are available on [Docker Hub](https://hub.docker.com/r/chrispinchaguza/virallc).
+
 ### Full usage
 
 General software options.
@@ -221,7 +225,7 @@ virallc citation
 
 ### Reference
 ```
-Chrispin Chaguza, ViralLC: A package for rapid assignment of viral lineage nomenclature, GitHub, https://github.com/ChrispinChaguza/virallc.git
+Chrispin Chaguza et al., ViralLC: A package for rapid assignment of viral lineage nomenclature, GitHub, https://github.com/ChrispinChaguza/virallc.git
 ```
 
 ### Additional references
