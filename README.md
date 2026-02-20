@@ -1,4 +1,4 @@
-# ViralLC: A package rapid assignment of viral lineage nomenclature
+# ViralLC: A package for rapid assignment of viral lineage nomenclature
 
 ## Getting the ViralLC source code
 ```
