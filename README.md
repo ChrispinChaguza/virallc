@@ -163,3 +163,7 @@ virallc version
 
 ## Cite
 To be updated!
+
+```
+Chrispin Chaguza, GitHub, [https://github.com/ChrispinChaguza/virallc.git](https://github.com/ChrispinChaguza/virallc.git)
+```
