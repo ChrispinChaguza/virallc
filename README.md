@@ -219,6 +219,7 @@ Show software citation information.
 virallc citation
 ```
 
+### Reference
 ```
 Chrispin Chaguza, GitHub, https://github.com/ChrispinChaguza/virallc.git
 ```
