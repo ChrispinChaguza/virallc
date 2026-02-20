@@ -50,7 +50,6 @@ dependencies:
   - nextclade=3.18.1=h4f1019d_0
   - numpy=2.4.2=py314hae46ccb_1
   - openssl=3.6.1=hd24854e_1
-  - pandas=3.0.0=py314h5e21a50_0
   - pcre2=10.46=h1dacb4a_0
   - perl=5.32.1=7_h4614cfb_perl5
   - perl-archive-tar=3.04=pl5321hdfd78af_0
@@ -88,6 +87,7 @@ dependencies:
   - zlib=1.3.1=h5f15de7_0
   - zstd=1.5.7=hbf9d68e_6
   - pip:
+      - alnpairdist==1.0.2
       - build==1.4.0
       - certifi==2026.1.4
       - charset-normalizer==3.4.4
@@ -111,6 +111,7 @@ dependencies:
       - more-itertools==10.8.0
       - nh3==0.3.3
       - packaging==26.0
+      - pandas==3.0.1
       - pillow==12.1.1
       - pygments==2.19.2
       - pyparsing==3.3.2
@@ -125,5 +126,5 @@ dependencies:
       - toml==0.10.2
       - twine==6.2.0
       - urllib3==2.6.3
-      - virallc==1.0.14
+      - virallc==1.0.19
 prefix: /Users/cchaguza/anaconda3/envs/virallc
