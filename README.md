@@ -224,7 +224,7 @@ virallc citation
 Chrispin Chaguza, GitHub, https://github.com/ChrispinChaguza/virallc.git
 ```
 
-## Additional references
+### Additional references
 
 The following external software packages are run as part of the virallc software package.
 ```
