@@ -154,15 +154,70 @@ Here is a command to assign rotavirus A lineages to samples in *example* directo
 virallc assign -i example.fna -o report.tsv -d RotavirusA
 ```
 
-### Software version
+### Full usage
 
-Run the command below to show the software version
+General software options.
+```
+Contact: Chrispin Chaguza (Chrispin.Chaguza@STJUDE.ORG)
+
+Usage:   virallc <command> [options]
+
+Command: assign      assigns lineages to viral sequences
+         database    setup, show, and update implemented databases
+         version     prints program version
+         citation    prints program citation information
+
+Written by Chrispin Chaguza, St Jude Children's Research Hospital, 2025
+```
+
+Setup or update database options.
+
+```
+virallc: A tool for rapid assignment of virus lineages for given nomenclature
+
+positional arguments:
+  database
+
+options:
+  -h, --help      show this help message and exit
+  --showdb, -p    Print list of implemented databases
+  --setupdb, -s   Setup implemented databases
+  --updatedb, -u  Update implemented databases
+  --version, -v   Show database version
+
+Written by Chrispin Chaguza, St Jude Children's Research Hospital, 2025
+```
+
+Assigning lineages to viral sequences.
+```
+virallc: A tool for rapid assignment of virus lineages for given nomenclature
+
+positional arguments:
+  assign
+
+options:
+  -h, --help            show this help message and exit
+  --in, -i [query ...]  Input (multi-)fasta files to type (each contig is typed separately)
+  --db, -d [refdb ...]  Specify viral database for the lineage classification (defaul=lineages.tsv)
+  --out, -o outfile     Output file containing a summary of the assigned lineages
+  --seq, -s             Show nucleotide sequence in the output
+  --force, -f           Force overwrite output file
+  --threads, -t threads
+                        Number of threads (default=5)
+  --quiet, -q           Show viral lineage assignment progress
+
+Written by Chrispin Chaguza, St Jude Children's Research Hospital, 2025
+```
+
+Show software version.
 ```
 virallc version
 ```
 
-## Cite
-To be updated!
+Show software citation information.
+```
+virallc citation
+```
 
 ```
 Chrispin Chaguza, GitHub, [https://github.com/ChrispinChaguza/virallc.git](https://github.com/ChrispinChaguza/virallc.git)
