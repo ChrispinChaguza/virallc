@@ -223,3 +223,19 @@ virallc citation
 ```
 Chrispin Chaguza, GitHub, https://github.com/ChrispinChaguza/virallc.git
 ```
+
+## Additional references
+
+The following external software packages are run as part of the virallc software package.
+```
+gitdir, https://github.com/sdushantha/gitdir
+```
+```
+Altschul SF, Gish W, Miller W, Myers EW, Lipman DJ. Basic local alignment search tool. J Mol Biol. 1990 Oct 5;215(3):403-10. doi: 10.1016/S0022-2836(05)80360-2. PMID: 2231712.
+```
+```
+Katoh K, Misawa K, Kuma K, Miyata T. MAFFT: a novel method for rapid multiple sequence alignment based on fast Fourier transform. Nucleic Acids Res. 2002 Jul 15;30(14):3059-66. doi: 10.1093/nar/gkf436. PMID: 12136088; PMCID: PMC135756.
+```
+```
+Aksamentov et al., (2021). Nextclade: clade assignment, mutation calling and quality control for viral genomes. Journal of Open Source Software, 6(67), 3773, https://doi.org/10.21105/joss.03773
+```
