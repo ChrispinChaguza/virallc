@@ -10,10 +10,10 @@ import urllib.request
 import time
 import random
 import shutil
-from virallc import SeqLib
+from .SeqLib import lineages
 
 def main():
-    SeqLib.lineages()            
+    lineages()            
 
 if __name__=="__main__":
     main()

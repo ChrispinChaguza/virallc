@@ -10,7 +10,7 @@ import shutil
 import urllib.request
 import concurrent.futures
 from pathlib import Path
-from virallc.__init__ import __version__
+from .__init__ import __version__
 
 dbpath = Path.home().joinpath("viraldb")
 tmpdirpath = f"tmpR.virallc.{random.randrange(1,1000000)}.{datetime.datetime.now()}".\
