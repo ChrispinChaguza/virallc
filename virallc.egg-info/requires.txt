@@ -3,3 +3,7 @@ toml
 biopython
 gitdir
 pandas
+
+[dev]
+build
+twine

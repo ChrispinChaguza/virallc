@@ -1,19 +1,4 @@
-#!/usr/bin/env python
+""" ViralLC: A package rapid assignment of viral lineage nomenclature"""
 
-import os
-import sys
-from Bio import SeqIO
-import glob
-import argparse
-import datetime
-import urllib.request
-import time
-import random
-import shutil
-from virallc.SeqLib import SeqLib
+__version__ = "1.0.20"
 
-def main():
-    SeqLib.lineages()            
-
-if __name__=="__main__":
-    main()

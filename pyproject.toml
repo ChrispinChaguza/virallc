@@ -3,7 +3,7 @@ requires = ["setuptools"]
 
 [project]
 name = "virallc"
-version = "1.0.20"
+dynamic = ["version"]
 authors = [
   { name="Chrispin Chaguza", email="chrispin.chaguza@gmail.com" },
 ]
@@ -35,14 +35,20 @@ dependencies = [
    "pandas"
 ]
 
+[tool.setuptools.dynamic]
+version = {attr = "virallc.__version__"}
+
+[project.optional-dependencies]
+dev = ["build","twine"]
+
 [tool.setuptools.packages]
 find = {} 
 
 [tool.setuptools]
-py-modules = ["virallc.SeqLib.SeqLib","virallc"]
+py-modules = ["virallc.SeqLib","virallc"]
 
 [project.scripts]
-virallc = "virallc:main"
+virallc = "virallc.__main__:main"
 alnPairDist = "virallc.scripts.alnPairDist:main"
 cleanFastaSeqs = "virallc.scripts.cleanFastaSeqs:main"
 virallcLineageChecker = "virallc.scripts.virallcLineageChecker:main"

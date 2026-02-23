@@ -47,9 +47,12 @@ Requires-Dist: toml
 Requires-Dist: biopython
 Requires-Dist: gitdir
 Requires-Dist: pandas
+Provides-Extra: dev
+Requires-Dist: build; extra == "dev"
+Requires-Dist: twine; extra == "dev"
 Dynamic: license-file
 
-# ViralLC: A package rapid assignment of viral lineage nomenclature
+# ViralLC: A package for rapid assignment of viral lineage nomenclature
 
 ## Getting the ViralLC source code
 ```
@@ -205,12 +208,92 @@ Here is a command to assign rotavirus A lineages to samples in *example* directo
 virallc assign -i example.fna -o report.tsv -d RotavirusA
 ```
 
-### Software version
+### Running ViralLC using Docker
 
-Run the command below to show the software version
+Detailed information on installing ViralLC as a Docker container are available on [Docker Hub](https://hub.docker.com/r/chrispinchaguza/virallc).
+
+### Full usage
+
+General software options.
+```
+Contact: Chrispin Chaguza (Chrispin.Chaguza@STJUDE.ORG)
+
+Usage:   virallc <command> [options]
+
+Command: assign      assigns lineages to viral sequences
+         database    setup, show, and update implemented databases
+         version     prints program version
+         citation    prints program citation information
+
+Written by Chrispin Chaguza, St Jude Children's Research Hospital, 2025
+```
+
+Setup or update database options.
+
+```
+virallc: A tool for rapid assignment of virus lineages for given nomenclature
+
+positional arguments:
+  database
+
+options:
+  -h, --help      show this help message and exit
+  --showdb, -p    Print list of implemented databases
+  --setupdb, -s   Setup implemented databases
+  --updatedb, -u  Update implemented databases
+  --version, -v   Show database version
+
+Written by Chrispin Chaguza, St Jude Children's Research Hospital, 2025
+```
+
+Assigning lineages to viral sequences.
+```
+virallc: A tool for rapid assignment of virus lineages for given nomenclature
+
+positional arguments:
+  assign
+
+options:
+  -h, --help            show this help message and exit
+  --in, -i [query ...]  Input (multi-)fasta files to type (each contig is typed separately)
+  --db, -d [refdb ...]  Specify viral database for the lineage classification (defaul=lineages.tsv)
+  --out, -o outfile     Output file containing a summary of the assigned lineages
+  --seq, -s             Show nucleotide sequence in the output
+  --force, -f           Force overwrite output file
+  --threads, -t threads
+                        Number of threads (default=5)
+  --quiet, -q           Show viral lineage assignment progress
+
+Written by Chrispin Chaguza, St Jude Children's Research Hospital, 2025
+```
+
+Show software version.
 ```
 virallc version
 ```
 
-## Cite
-To be updated!
+Show software citation information.
+```
+virallc citation
+```
+
+### Reference
+```
+Chrispin Chaguza et al., ViralLC: A package for rapid assignment of viral lineage nomenclature, GitHub, https://github.com/ChrispinChaguza/virallc.git
+```
+
+### Additional references
+
+The following external software packages are run as part of the virallc software package.
+```
+gitdir, GitHub, https://github.com/sdushantha/gitdir
+```
+```
+Altschul SF, Gish W, Miller W, Myers EW, Lipman DJ. Basic local alignment search tool. J Mol Biol. 1990 Oct 5;215(3):403-10. doi: 10.1016/S0022-2836(05)80360-2. PMID: 2231712.
+```
+```
+Katoh K, Misawa K, Kuma K, Miyata T. MAFFT: a novel method for rapid multiple sequence alignment based on fast Fourier transform. Nucleic Acids Res. 2002 Jul 15;30(14):3059-66. doi: 10.1093/nar/gkf436. PMID: 12136088; PMCID: PMC135756.
+```
+```
+Aksamentov et al., (2021). Nextclade: clade assignment, mutation calling and quality control for viral genomes. Journal of Open Source Software, 6(67), 3773, https://doi.org/10.21105/joss.03773
+```

@@ -1,14 +1,15 @@
 LICENSE
 README.md
 pyproject.toml
+virallc/SeqLib.py
 virallc/__init__.py
+virallc/__main__.py
 virallc.egg-info/PKG-INFO
 virallc.egg-info/SOURCES.txt
 virallc.egg-info/dependency_links.txt
 virallc.egg-info/entry_points.txt
 virallc.egg-info/requires.txt
 virallc.egg-info/top_level.txt
-virallc/SeqLib/SeqLib.py
 virallc/scripts/alnPairDist.py
 virallc/scripts/alnSeqCov.py
 virallc/scripts/cleanFastaSeqs.py

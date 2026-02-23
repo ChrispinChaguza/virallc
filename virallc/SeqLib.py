@@ -10,12 +10,12 @@ import shutil
 import urllib.request
 import concurrent.futures
 from pathlib import Path
+from virallc.__init__ import __version__
 
 dbpath = Path.home().joinpath("viraldb")
 tmpdirpath = f"tmpR.virallc.{random.randrange(1,1000000)}.{datetime.datetime.now()}".\
                  replace(':','').replace(' ','.').replace(',','.')
 refdbName = ""
-version = "1.0.20"
 
 def ReadCmdOptions():
 
@@ -123,8 +123,7 @@ def ReadCmdOptions():
             sys.exit()
 
     elif sys.argv[1]=="version":
-        global version
-        print(f"\nVersion: {version}\n")
+        print(f"\nVersion: {__version__}\n")
         sys.exit()
 
     elif sys.argv[1]=="citation":
