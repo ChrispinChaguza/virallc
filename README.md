@@ -14,7 +14,7 @@ The easist way to install the latest version of ViralLC is using Pip
 pip install virallc
 ```
 
-Here is a command to install a specific version of ViralLC using Pip
+Here is a command to install a specific version of ViralLC using Pip (see the available versions on [PyPI](https://pypi.org/manage/project/virallc/releases/).
 ```
 pip install virallc=={VERSION HERE}
 ```
