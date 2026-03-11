@@ -11,11 +11,11 @@ def compareSeqs(i,j):
 
     seqLen=round(len(i.seq),4)
 
-    seqLennoN=round(len(str(i.seq).replace("-","N").replace("X","N").upper().replace("N","")),4)
+    seqLenNoN=round(len(str(i.seq).replace("-","N").replace("X","N").upper().replace("N","")),4)
 
-    seqCov=round(seqLennoN/seqLen*100,4) if seqLen!=0 else 0
+    seqCov=round(seqLenNoN/seqLen*100,4) if seqLen!=0 else 0
 
-    return(f"{i.id}\t{seqLen}\t{seqLennoN}\t{seqCov}")
+    return(f"{i.id}\t{seqLen}\t{seqLenNoN}\t{seqCov}")
 
 def main():
     options=argparse.ArgumentParser(sys.argv[0],
@@ -50,7 +50,7 @@ def main():
 
     fhandle=open(str(cmdValues['outputFile']),"w")
 
-    fhandle.write("seq\tseq.len\tseq.lenNoNs\tseq.cov\n")
+    fhandle.write("seq\tseqLen\tseqLenNoNs\tseqCov\n")
 
     with multiprocessing.Pool(processes=threads) as pool:
         args=[(m,m) for m in alignment]

@@ -14,11 +14,10 @@ maintainers = [
 
 description = "ViralLC: A Python package for consistent assignment of viral lineages"
 readme = {file = "README.md", content-type = "text/markdown"}
-license = {file = "LICENSE"}
+license = "MIT"
 requires-python = ">=3.8"
 classifiers = [
     "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
     "Development Status :: 4 - Beta",
     "Environment :: Console",
@@ -31,6 +30,7 @@ dependencies = [
    "setuptools",
    "toml",
    "biopython",
+   "networkx",
    "gitdir",
    "pandas"
 ]
@@ -45,12 +45,11 @@ dev = ["build","twine"]
 find = {} 
 
 [tool.setuptools]
-py-modules = ["virallc.SeqLib","virallc"]
+py-modules = []
 
 [project.scripts]
 virallc = "virallc.__main__:main"
 alnPairDist = "virallc.scripts.alnPairDist:main"
-cleanFastaSeqs = "virallc.scripts.cleanFastaSeqs:main"
 virallcLineageChecker = "virallc.scripts.virallcLineageChecker:main"
 alnSeqCov = "virallc.scripts.alnSeqCov:main"
 virallcClusters = "virallc.scripts.virallcClusters:main"

@@ -20,24 +20,13 @@ def compareSeqs(i,j,k):
             else:
                 seqMisMatch=seqMisMatch+1
 
-    seqDist=round(seqMatch/(seqMatch+seqMisMatch)*100,4) if (seqMatch+seqMisMatch)!=0 else 0
+    seqPID=round(seqMatch/(seqMatch+seqMisMatch)*100,4) if (seqMatch+seqMisMatch)!=0 else 0
 
-    len1=round(len(i.seq),4)
-    len2=round(len(j.seq),4)
+    seqLen=round(len(i.seq),4)
 
-    len1noN=round(len(str(i.seq).replace("-","N").replace("X","N").upper().replace("N","")),4)
-    len2noN=round(len(str(j.seq).replace("-","N").replace("X","N").upper().replace("N","")),4)
+    seqCov=round((seqMatch+seqMisMatch)/seqLen*100,4) if seqLen!=0 else 0
 
-    cov1=round(len1noN/len1*100,4) if len1!=0 else 0
-    cov2=round(len2noN/len2*100,4) if len2!=0 else 0
-
-    if False:
-        if k:
-            print(f"{i.id}\t{j.id}\t{len1}\t{len2}\t{len1noN}\t{len2noN}\t{cov1}\t{cov2}\t{seqMatch}\t{seqMisMatch}\t{seqDist}\n")
-        else:
-            pass
-
-    return(f"{i.id}\t{j.id}\t{len1}\t{len2}\t{len1noN}\t{len2noN}\t{cov1}\t{cov2}\t{seqMatch}\t{seqMisMatch}\t{seqDist}")
+    return(f"{i.id}\t{j.id}\t{seqLen}\t{seqCov}\t{seqMatch}\t{seqMisMatch}\t{seqPID}")
 
 def main():
     version = "1.0.1"
@@ -87,12 +76,7 @@ def main():
 
     fhandle=open(str(cmdValues['outputFile']),"w")
 
-    if cmdValues['verboseOutput']:
-        print("seq1\tseq2\tseq1.len\tseq2.len\tseq1.lenNoNs\tseq2.lenNoNs\tseq1.cov\tseq2.cov\tmatch\tmismatch\tpid\n")
-    else:
-        pass
-
-    fhandle.write("seq1\tseq2\tseq1.len\tseq2.len\tseq1.lenNoNs\tseq2.lenNoNs\tseq1.cov\tseq2.cov\tmatch\tmismatch\tpid\n")
+    fhandle.write("seq1\tseq2\tlen\tcov\tmatch\tmismatch\tpid\n")
 
     tmpList = sorted(map(sorted, combinations(set([i for i in alignment.keys()]), 2)))
 
@@ -100,6 +84,11 @@ def main():
         args=[(alignment[m],alignment[n],cmdValues['verboseOutput']) for m,n in tmpList]
         #results=pool.starmap(compareSeqs, args)
         results=pool.starmap(compareSeqs, args)
+
+    if cmdValues['verboseOutput']:
+        print("seq1\tseq2\tlen\tcov\tmatch\tmismatch\tpid")
+    else:
+        pass
 
     for result in results:
         if cmdValues['verboseOutput']:
