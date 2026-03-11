@@ -16,7 +16,7 @@ pip install virallc
 
 Here is a command to install a specific version of ViralLC using Pip (see the available versions on [PyPI](https://pypi.org/project/alnPairDist/#history)).
 ```
-pip install virallc=={VERSION HERE}
+pip install virallc
 ```
 After installing virallc using Pip, remember to install these dependencies (mafft, blast, and nextclade) manually using Conda!
 
