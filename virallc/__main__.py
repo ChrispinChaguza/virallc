@@ -13,7 +13,10 @@ import shutil
 from .SeqLib import lineages
 
 def main():
-    lineages()            
+    try:
+        lineages()            
+    except KeyboardInterrupt:
+        print("Execulted halted")
 
 if __name__=="__main__":
-    main()
+        main()
