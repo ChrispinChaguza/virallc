@@ -50,9 +50,9 @@ py-modules = []
 [project.scripts]
 virallc = "virallc.__main__:main"
 alnPairDist = "virallc.scripts.alnPairDist:main"
-virallcLineageChecker = "virallc.scripts.virallcLineageChecker:main"
 alnSeqCov = "virallc.scripts.alnSeqCov:main"
-virallcClusters = "virallc.scripts.virallcClusters:main"
+virallcClusters1L = "virallc.scripts.virallcClusters1L:main"
+virallcClusters2L = "virallc.scripts.virallcClusters2L:main"
 virallcClusters3L = "virallc.scripts.virallcClusters3L:main"
 
 [project.urls]

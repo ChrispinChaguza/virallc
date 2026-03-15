@@ -13,6 +13,6 @@ virallc.egg-info/top_level.txt
 virallc/SeqLib/SeqLib.py
 virallc/scripts/alnPairDist.py
 virallc/scripts/alnSeqCov.py
-virallc/scripts/virallcClusters.py
+virallc/scripts/virallcClusters1L.py
+virallc/scripts/virallcClusters2L.py
 virallc/scripts/virallcClusters3L.py
-virallc/scripts/virallcLineageChecker.py

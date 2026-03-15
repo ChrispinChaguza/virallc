@@ -38,30 +38,33 @@ def ReadCmdOptions():
     if sys.argv[1]=="assign":
         options=argparse.ArgumentParser(sys.argv[0],
                     usage=argparse.SUPPRESS,
-                    description='virallc: A tool for rapid assignment of virus lineages for given nomenclature',
-                    prefix_chars='-',
+                    description="virallc: A tool for rapid assignment of virus lineages for given nomenclature",
+                    prefix_chars="-",
                     add_help=True,
-                    epilog='Written by Chrispin Chaguza, St Jude Children\'s Research Hospital, 2025')
+                    epilog="Written by Chrispin Chaguza, St Jude Children\'s Research Hospital, 2025")
 
         options.add_argument("assign", nargs="?")
-        options.add_argument('--in','-i',action='store',required=True,nargs="*",
-                            metavar='query',dest='query',
-                            help='Input (multi-)fasta files to type (each contig is typed separately)')
-        options.add_argument('--db','-d',action='store',required=True,nargs="*",
-                            metavar='refdb',dest='refdb',
-                            help='Specify viral database for the lineage classification (defaul=lineages.tsv)')
-        options.add_argument('--out','-o',action='store',required=False,nargs=1,
-                            metavar='outfile',dest='outfile',default="lineages.tsv",
-                            help='Output file containing a summary of the assigned lineages')
-        options.add_argument('--seq','-s',action='store_true',default=False,
-                            dest='showseq',help='Show nucleotide sequence in the output')
-        options.add_argument('--force','-f',action='store_true',default=False,
-                            dest='force',help='Force overwrite output file')
-        options.add_argument('--threads','-t',action='store',required=False,nargs=1,
-                            metavar='threads',dest='threads',default=5,
-                            help='Number of threads (default=5)')
-        options.add_argument('--quiet','-q',action='store_false',default=True,
-                            dest='verbose',help='Show viral lineage assignment progress')
+        options.add_argument("--in","-i",action="store",required=True,nargs="*",
+                            metavar="query",dest="query",
+                            help="Input (multi-)fasta files to type (each contig is typed separately)")
+        options.add_argument("--db","-d",action="store",required=True,nargs="*",
+                            metavar="refdb",dest="refdb",
+                            help="Specify viral database for the lineage classification (defaul=lineages.tsv)")
+        options.add_argument("--out","-o",action="store",required=False,nargs=1,
+                            metavar="outfile",dest="outfile",default="lineages.tsv",
+                            help="Output file containing a summary of the assigned lineages")
+        options.add_argument("--aln","-a",action="store",required=False,nargs=1,
+                            metavar="aligner",dest="aligner",default="nextclade",choices=["nextclade","mafft"],
+                            help="Sequence alignment tool (default=nextclade)")
+        options.add_argument("--seq","-s",action="store_true",default=False,
+                            dest="showseq",help="Show nucleotide sequence in the output")
+        options.add_argument("--force","-f",action="store_true",default=False,
+                            dest="force",help="Force overwrite output file")
+        options.add_argument("--threads","-t",action="store",required=False,nargs=1,
+                            metavar="threads",dest="threads",default=5,
+                            help="Number of threads (default=5)")
+        options.add_argument("--quiet","-q",action="store_false",default=True,
+                            dest="verbose",help="Show viral lineage assignment progress")
 
         options=options.parse_args(args=None if sys.argv[2:] else ['--help'])
 
@@ -71,13 +74,14 @@ def ReadCmdOptions():
         else:
             pass
 
-        cmdValues = {'inputSeqFiles': options.query[0:][0:],
-                     'refDatabase': options.refdb[0:][0],
-                     'outputLineageFile': options.outfile[0:][0] if isinstance(options.outfile,list) else options.outfile,
-                     'includeSequence': options.showseq,
-                     'threads': int(options.threads[0:][0]) if isinstance(options.threads,list) else options.threads,
-                     'forceOverwrite': options.force, 
-                     'verboseOutput': options.verbose}
+        cmdValues = {"inputSeqFiles": options.query[0:][0:],
+                     "refDatabase": options.refdb[0:][0],
+                     "outputLineageFile": options.outfile[0:][0] if isinstance(options.outfile,list) else options.outfile,
+                     "seqAligner": str(options.aligner[0:][0]).lower() if isinstance(options.aligner,list) else str(options.aligner).lower(),
+                     "includeSequence": options.showseq,
+                     "threads": int(options.threads[0:][0]) if isinstance(options.threads,list) else options.threads,
+                     "forceOverwrite": options.force, 
+                     "verboseOutput": options.verbose}
 
         global refdbName
         refdbName = options.refdb[0:][0]
@@ -90,23 +94,23 @@ def ReadCmdOptions():
     elif sys.argv[1]=="database":
         options=argparse.ArgumentParser(sys.argv[0],
                     usage=argparse.SUPPRESS,
-                    description='virallc: A tool for rapid assignment of virus lineages for given nomenclature',
-                    prefix_chars='-',
+                    description="virallc: A tool for rapid assignment of virus lineages for given nomenclature",
+                    prefix_chars="-",
                     add_help=True,
-                    epilog='Written by Chrispin Chaguza, St Jude Children\'s Research Hospital, 2025')
+                    epilog="Written by Chrispin Chaguza, St Jude Children\'s Research Hospital, 2025")
 
         options.add_argument("database", nargs="?")
-        options.add_argument('--showdb','-p',action='store_true',default=False,
-                            dest='showdb',help='Print list of implemented databases')
-        options.add_argument('--setupdb','-s',action='store_true',default=False,
-                            dest='setupdb',help='Setup implemented databases')
-        options.add_argument('--updatedb','-u',action='store_true',default=False,
-                            dest='updatedb',help='Update implemented databases')
-        options.add_argument('--version','-v',action='store_true',default=False,
-                            dest='version',help='Show database version')
+        options.add_argument("--showdb","-p",action="store_true",default=False,
+                            dest="showdb",help="Print list of implemented databases")
+        options.add_argument("--setupdb","-s",action="store_true",default=False,
+                            dest="setupdb",help="Setup implemented databases")
+        options.add_argument("--updatedb","-u",action="store_true",default=False,
+                            dest="updatedb",help="Update implemented databases")
+        options.add_argument("--version","-v",action="store_true",default=False,
+                            dest="version",help="Show database version")
 
         if len(sys.argv)<=2:
-            options=options.parse_args(args=['--help'])
+            options=options.parse_args(args=["--help"])
         else:
             options=options.parse_args()
 
@@ -249,6 +253,7 @@ def checkDatabase():
    
     if (not os.path.exists(dbpath)):
         print("Run 'viraL database --setupdb' to setup the databases for lineage classification")
+        sys.exit()
     else:
         if (os.path.exists(os.path.join(dbpath,refdbName))):
             if (not os.path.exists(os.path.join(dbpath,refdbName,"strain.db.info.txt"))):
@@ -368,15 +373,22 @@ def GetClosestSeq(seqAlignName,refSeqName):
 
     return(seqMinDist)
 
-def AddSeqToAlignment(seqfastafile,seqFile,refSeqFile):
+def AddSeqToAlignment(seqfastafile,seqFile,refSeqFile,seqAligner):
     threads = 5
     outfastafile = str(getUniqueRandomString()+".aln")
     outfastafile1 = str(getUniqueRandomString()+".aln")
 
-    nextcladecmd = f"nextclade run --silent --kmer-distance 15 --kmer-length 31 --allowed-mismatches 50 \
+    if seqAligner=="nextclade":
+        nextcladecmd = f"nextclade run --silent --kmer-distance 15 --kmer-length 31 --allowed-mismatches 50 \
                        --window-size 100 --min-match-length 50 --max-alignment-attempts 5 --min-length 50 \
                        --output-fasta {outfastafile1} --input-ref {refSeqFile} {seqFile} {seqfastafile}"
-    subprocess.call(nextcladecmd,shell=True,stdout=open(outfastafile1,'w'),stderr=subprocess.STDOUT)
+        subprocess.call(nextcladecmd,shell=True,stdout=open(outfastafile1,'w'),stderr=subprocess.STDOUT)
+    else:
+        mafftcmd = f"mafft --quiet --auto --thread {threads} --addfull {seqFile} --keeplength {refSeqFile}"
+        subprocess.call(mafftcmd,shell=True,stdout=open(outfastafile,'w'),stderr=subprocess.STDOUT)
+
+        mafftcmd1 = f"mafft --quiet --auto --thread {threads} --addfull {seqfastafile} --keeplength {outfastafile}"
+        subprocess.call(mafftcmd1,shell=True,stdout=open(outfastafile1,'w'),stderr=subprocess.STDOUT)
 
     tmpAlignSeqs = {}
 
@@ -442,7 +454,7 @@ def WriteAlignment(seqObjDict,outputfastafile):
 def CompareSeqsBLAST(refSeqFile,seqFile):
     tmpBlastOutFile = str(getUniqueRandomString()+".m8")
     
-    blastcmd = f"blastn -query {refSeqFile} -subject {seqFile} -evalue 0.001 -outfmt \
+    blastcmd = f"tblastx -query {refSeqFile} -subject {seqFile} -evalue 0.001 -outfmt \
             '6 qseqid sseqid qlen slen qstart qend length pident qcovs evalue qseq sseq'"
 
     subprocess.call(blastcmd,shell=True,stdout=open(tmpBlastOutFile,'w'),stderr=subprocess.STDOUT)
@@ -455,7 +467,7 @@ def CompareSeqsBLAST(refSeqFile,seqFile):
         tmpFile = []
 
     if len(tmpFile) == 0:
-        blastcmd = f"tblastx -query {refSeqFile} -subject {seqFile} -evalue 0.001 -outfmt \
+        blastcmd = f"blastn -query {refSeqFile} -subject {seqFile} -evalue 0.001 -outfmt \
                 '6 qseqid sseqid qlen slen qstart qend length pident qcovs evalue qseq sseq'"
         subprocess.call(blastcmd,shell=True,stdout=open(tmpBlastOutFile,'w'),stderr=subprocess.STDOUT)
 
@@ -583,7 +595,7 @@ def assignLineageToSequence(segmentName,seqName):
     else:
         return(False)
 
-def GetLineage(seqFastaFile):
+def GetLineage(seqFastaFile,seqAligner):
     assignedLineageReport = {}
     blastCoverageThresholdSegment = 20
 
@@ -621,7 +633,7 @@ def GetLineage(seqFastaFile):
             refSegmentSeq = GetSeqSeqForSegments(blastResults['qseqid'])
             refSegmentALN = GetReferenceSequence(blastResults['qseqid'])
 
-            outSeqAlign = AddSeqToAlignment(refSegmentALN,seqFile,refSegmentSeq)
+            outSeqAlign = AddSeqToAlignment(refSegmentALN,seqFile,refSegmentSeq,seqAligner)
 
             if len(outSeqAlign.keys())>0:
                 closestMatchedRefSeq = GetClosestSeq(outSeqAlign,blastResults['sseqid'])
@@ -697,9 +709,9 @@ def GetLineage(seqFastaFile):
 
     return(assignedLineageReport)
 
-def lineageReport(seqFileName,tmpSeqFile,eachSeq,includeSequence,verbose):
+def lineageReport(seqFileName,tmpSeqFile,eachSeq,includeSequence,verbose,seqAligner):
     if os.path.exists(tmpSeqFile):
-        assignedLineages = GetLineage(tmpSeqFile) 
+        assignedLineages = GetLineage(tmpSeqFile,seqAligner) 
 
         for eachSeqLineage in assignedLineages.keys():
             if includeSequence:
@@ -849,7 +861,7 @@ def lineages():
                 sys.exit()
 
         with concurrent.futures.ThreadPoolExecutor(cmdOptionsVals['threads']) as executor:
-            jobs = [executor.submit(lineageReport,p,q,r,cmdOptionsVals['includeSequence'],cmdOptionsVals['verboseOutput']) for p,q,r in tmpList]  
+            jobs = [executor.submit(lineageReport,p,q,r,cmdOptionsVals['includeSequence'],cmdOptionsVals['verboseOutput'],cmdOptionsVals['seqAligner']) for p,q,r in tmpList]  
             for output in concurrent.futures.as_completed(jobs): 
                 outputLineageHandle.write(output.result())
    
