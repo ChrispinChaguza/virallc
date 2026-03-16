@@ -29,6 +29,9 @@ def main():
     options.add_argument('--out','-o',action='store',required=False,nargs=1,
                         metavar='outfile',dest='outfile',default="clusters.out.tsv",
                         help='Output file containing inferred sequence clusters')
+    options.add_argument('--sep','-s',action='store',required=False,nargs=1,
+                        metavar='separator',dest='separator',default="",
+                        help='Lineage label separator')
     options.add_argument('--thresholds','-t',action='store',required=False,nargs="*",
                         metavar='thresholds',dest='thresholds',default=1,
                         help='Number of threads (default=1)')
@@ -42,6 +45,7 @@ def main():
                  'seqlabel': options.seqlabel[0:][0],
                  'prefix': options.prefix[0:][0],
                  'output': options.outfile[0:][0] if isinstance(options.outfile,list) else options.outfile,
+                 'separator': options.separator[0:][0] if isinstance(options.separator,list) else options.separator,
                  'thresholds': [float(i) for i in options.thresholds[0:]] if isinstance(options.thresholds,list) else options.thresholds,
                  'verbose': options.verbose}
 
@@ -60,11 +64,13 @@ def main():
     fhandle = open(f"{cmdValues['seqlabel']}.clusters.tsv","w")
 
     for i,j in enumerate(networkClusters):
-        FirstLevelLin = str(i+1)
-        seqLabel = j
-        clusterPrefix = cmdValues["prefix"]
+        for s in j:
+            FirstLevelLin = str(i+1)
+            seqLabel = s
+            clusterPrefix = cmdValues["prefix"]
+            separator = cmdValues["separator"]
 
-        fhandle.write(f"{seqLabel}\t{clusterPrefix}.{FirstLevelLin}\n")
+            fhandle.write(f"{seqLabel}\t{clusterPrefix}{separator}{FirstLevelLin}\n")
 
     fhandle.close();
 

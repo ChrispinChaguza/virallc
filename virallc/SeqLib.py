@@ -726,8 +726,8 @@ def lineageReport(seqFileName,tmpSeqFile,eachSeq,includeSequence,verbose,seqAlig
                                            "{closestMatchIdentity}",\
                                            "{closestMatchCoverage}",\
                                            "{coverageFlag}",\
-                                           "{assignedLineageInfo}",\
-                                           "{nucSequence}","\n"])).format(seqFastaFile=seqFileName,
+                                           "{nucSequence}",
+                                           "\n"])).format(seqFastaFile=seqFileName,
                       seqName=lineageReport['seqName'],
                       VirusName=getDatabaseDescription(),
                       segment=lineageReport['segment'],
@@ -754,7 +754,7 @@ def lineageReport(seqFileName,tmpSeqFile,eachSeq,includeSequence,verbose,seqAlig
                                            "{closestMatchIdentity}",\
                                            "{closestMatchCoverage}",\
                                            "{coverageFlag}",\
-                                           "{assignedLineageInfo}","\n"])).format(seqFastaFile=seqFileName,
+                                           "\n"])).format(seqFastaFile=seqFileName,
                       seqName=lineageReport['seqName'],
                       VirusName=getDatabaseDescription(),
                       segment=lineageReport['segment'],
@@ -821,8 +821,8 @@ def lineages():
                                         "identity",\
                                         "coverage",\
                                         "quality",\
-                                        "description",\
-                                        "query","\n"])
+                                        "query",
+                                        "\n"])
         else:
             lineageReportHeader = str("\t").join(["sequence",\
                                         "name",\
@@ -834,7 +834,7 @@ def lineages():
                                         "identity",\
                                         "coverage",\
                                         "quality",\
-                                        "description","\n"])
+                                        "\n"])
 
         outputLineageHandle.write(lineageReportHeader)
 
