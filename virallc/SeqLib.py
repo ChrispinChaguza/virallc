@@ -384,10 +384,10 @@ def AddSeqToAlignment(seqfastafile,seqFile,refSeqFile,seqAligner):
                        --output-fasta {outfastafile1} --input-ref {refSeqFile} {seqFile} {seqfastafile}"
         subprocess.call(nextcladecmd,shell=True,stdout=open(outfastafile1,'w'),stderr=subprocess.STDOUT)
     else:
-        mafftcmd = f"mafft --quiet --auto --thread {threads} --addfull {seqFile} --keeplength {refSeqFile}"
+        mafftcmd = f"mafft --anysymbol --quiet --auto --thread {threads} --addfull {seqFile} --keeplength {refSeqFile}"
         subprocess.call(mafftcmd,shell=True,stdout=open(outfastafile,'w'),stderr=subprocess.STDOUT)
 
-        mafftcmd1 = f"mafft --quiet --auto --thread {threads} --addfull {seqfastafile} --keeplength {outfastafile}"
+        mafftcmd1 = f"mafft --anysymbol --quiet --auto --thread {threads} --addfull {seqfastafile} --keeplength {outfastafile}"
         subprocess.call(mafftcmd1,shell=True,stdout=open(outfastafile1,'w'),stderr=subprocess.STDOUT)
 
     tmpAlignSeqs = {}
@@ -396,20 +396,20 @@ def AddSeqToAlignment(seqfastafile,seqFile,refSeqFile,seqAligner):
 
     if os.path.exists(outfastafile1):
         if os.path.getsize(outfastafile1)==0:
-            mafftcmd = f"mafft --quiet --auto --thread {threads} --addfull {seqFile} --keeplength {refSeqFile}"
+            mafftcmd = f"mafft --anysymbol --quiet --auto --thread {threads} --addfull {seqFile} --keeplength {refSeqFile}"
             subprocess.call(mafftcmd,shell=True,stdout=open(outfastafile,'w'),stderr=subprocess.STDOUT)
 
-            mafftcmd1 = f"mafft --quiet --auto --thread {threads} --addfull {seqfastafile} --keeplength {outfastafile}"
+            mafftcmd1 = f"mafft --anysymbol --quiet --auto --thread {threads} --addfull {seqfastafile} --keeplength {outfastafile}"
             subprocess.call(mafftcmd1,shell=True,stdout=open(outfastafile1,'w'),stderr=subprocess.STDOUT)
 
             os.remove(outfastafile)
         else:
             pass
     else:
-        mafftcmd = f"mafft --quiet --auto --thread {threads} --addfull {seqFile} --keeplength {refSeqFile}"
+        mafftcmd = f"mafft --anysymbol --quiet --auto --thread {threads} --addfull {seqFile} --keeplength {refSeqFile}"
         subprocess.call(mafftcmd,shell=True,stdout=open(outfastafile,'w'),stderr=subprocess.STDOUT)
 
-        mafftcmd1 = f"mafft --quiet --auto --thread {threads} --addfull {seqfastafile} --keeplength {outfastafile}"
+        mafftcmd1 = f"mafft --anysymbol --quiet --auto --thread {threads} --addfull {seqfastafile} --keeplength {outfastafile}"
         subprocess.call(mafftcmd1,shell=True,stdout=open(outfastafile1,'w'),stderr=subprocess.STDOUT)
 
         os.remove(outfastafile)
@@ -420,10 +420,10 @@ def AddSeqToAlignment(seqfastafile,seqFile,refSeqFile,seqAligner):
         if (len(tmpAlignSeqs.keys())>0) and (seqName in tmpAlignSeqs.keys()):
             pass
         else:
-            mafftcmd = f"mafft --quiet --auto --thread {threads} --addfull {seqFile} --keeplength {refSeqFile}"
+            mafftcmd = f"mafft --anysymbol --quiet --auto --thread {threads} --addfull {seqFile} --keeplength {refSeqFile}"
             subprocess.call(mafftcmd,shell=True,stdout=open(outfastafile,'w'),stderr=subprocess.STDOUT)
 
-            mafftcmd1 = f"mafft --quiet --auto --thread {threads} --addfull {seqfastafile} --keeplength {outfastafile}"
+            mafftcmd1 = f"mafft --anysymbol --quiet --auto --thread {threads} --addfull {seqfastafile} --keeplength {outfastafile}"
             subprocess.call(mafftcmd1,shell=True,stdout=open(outfastafile1,'w'),stderr=subprocess.STDOUT)
 
             os.remove(outfastafile)
