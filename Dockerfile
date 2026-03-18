@@ -31,7 +31,7 @@ RUN tar -xzf ncbi-blast-2.17.0+-aarch64-linux.tar.gz -C ./
 RUN cp ncbi-blast-2.17.0+/bin/* /usr/local/bin/
 RUN rm -rf ncbi-blast-2.17.0+/bin/* && rm -rf ncbi-blast-2.17.0+-aarch64-linux.tar.gz
 
-RUN /opt/conda/bin/conda install -c bioconda mafft -y 
+RUN /opt/conda/bin/conda install -c bioconda mafft=7.525 -y 
 RUN /opt/conda/bin/conda install -c bioconda nextclade=3.18.1 -y
 RUN /opt/conda/bin/conda install -c conda-forge biopython=1.86 -y
 RUN /opt/conda/bin/conda install -c conda-forge pandas=3.0.0 -y
