@@ -187,6 +187,8 @@ options:
   --showdb, -p    Print list of implemented databases
   --setupdb, -s   Setup implemented databases
   --updatedb, -u  Update implemented databases
+  --cutoffs, -c   Lineage cutoffs for the databases
+  --db, -d refdb  Specify viral database for the lineage classification
   --version, -v   Show database version
 
 Written by Chrispin Chaguza, St Jude Children's Research Hospital, 2025
@@ -202,8 +204,9 @@ positional arguments:
 options:
   -h, --help            show this help message and exit
   --in, -i [query ...]  Input (multi-)fasta files to type (each contig is typed separately)
-  --db, -d [refdb ...]  Specify viral database for the lineage classification (defaul=lineages.tsv)
+  --db, -d refdb        Specify viral database for the lineage classification
   --out, -o outfile     Output file containing a summary of the assigned lineages
+  --aln, -a aligner     Sequence alignment tool (default=nextclade)
   --seq, -s             Show nucleotide sequence in the output
   --force, -f           Force overwrite output file
   --threads, -t threads
