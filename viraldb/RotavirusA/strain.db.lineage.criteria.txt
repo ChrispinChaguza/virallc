@@ -1,0 +1,6 @@
+Initial database definitions:
+    - Level 1 lineages (genotypes): 94% nucleotide identity 
+    - Level 2 lineages (subtypes/sublineages): 98% nucleotide identity
+
+New lineages definitions:
+    - Level 3 lineages onward to be defined based on 97% nucleotide identity

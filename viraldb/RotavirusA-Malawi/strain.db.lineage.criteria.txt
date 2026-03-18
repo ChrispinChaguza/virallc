@@ -1,0 +1,5 @@
+Initial database definitions (lineages circulating in Malawi only for local genomic epidemiology at high resolution):
+    - Local lineages (subtypes/sublineages): 98.5% nucleotide identity
+
+New lineages definitions:
+    - Newer lineages to be defined based on 98.5% nucleotide identity
