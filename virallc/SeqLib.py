@@ -47,9 +47,9 @@ def ReadCmdOptions():
         options.add_argument("--in","-i",action="store",required=True,nargs="*",
                             metavar="query",dest="query",
                             help="Input (multi-)fasta files to type (each contig is typed separately)")
-        options.add_argument("--db","-d",action="store",required=True,nargs="*",
+        options.add_argument("--db","-d",action="store",required=True,nargs=1,
                             metavar="refdb",dest="refdb",
-                            help="Specify viral database for the lineage classification (defaul=lineages.tsv)")
+                            help="Specify viral database for the lineage classification")
         options.add_argument("--out","-o",action="store",required=False,nargs=1,
                             metavar="outfile",dest="outfile",default="lineages.tsv",
                             help="Output file containing a summary of the assigned lineages")
@@ -106,6 +106,11 @@ def ReadCmdOptions():
                             dest="setupdb",help="Setup implemented databases")
         options.add_argument("--updatedb","-u",action="store_true",default=False,
                             dest="updatedb",help="Update implemented databases")
+        options.add_argument("--cutoffs","-c",action="store_true",default=False,
+                            dest="dblineageinfo",help="Lineage cutoffs for the databases")
+        options.add_argument("--db","-d",action="store",required=False,nargs=1,
+                            metavar="refdb",dest="refdb",default="None",
+                            help="Specify viral database for the lineage classification")
         options.add_argument("--version","-v",action="store_true",default=False,
                             dest="version",help="Show database version")
 
@@ -114,14 +119,26 @@ def ReadCmdOptions():
         else:
             options=options.parse_args()
 
-        if options.showdb:
-            showDatabases()
+
+        cmd1Values = {"showdb": options.showdb,
+                     "setupdb": options.setupdb,
+                     "updatedb": options.updatedb,
+                     "dblineagecutoffs": options.dblineageinfo,
+                     "refdb":  options.refdb[0:][0] if isinstance(options.refdb,list) else options.refdb,
+                     "version": options.version}
+
+
+        if cmd1Values["showdb"]:
+            showDatabases(cmd1Values["refdb"])
             sys.exit()
-        elif options.setupdb or options.updatedb:
-            updateDatabases()
+        elif cmd1Values["setupdb"] or cmd1Values["updatedb"]:
+            updateDatabases(cmd1Values["refdb"])
             sys.exit()
-        elif options.version:
-            showDatabaseVersions()
+        elif cmd1Values["version"]:
+            showDatabaseVersions(cmd1Values["refdb"])
+            sys.exit()
+        elif cmd1Values["dblineagecutoffs"]:
+            showDatabaseLineageInfo(cmd1Values["refdb"])
             sys.exit()
         else:
             sys.exit()
@@ -193,7 +210,7 @@ def updateDatabases():
 
     sys.exit()
 
-def showDatabases():
+def showDatabases(refdb="None"):
     dbpath = getdbLocation()
     
     if (not os.path.exists(dbpath)):
@@ -204,15 +221,25 @@ def showDatabases():
                 if (os.path.exists(os.path.join(dbpath,db,"version.txt"))) and (os.path.exists(os.path.join(dbpath,db,"strain.db.info.txt"))):
                     dbDescription = [i.strip() for i in open(os.path.join(dbpath,db,"strain.db.info.txt"),"r")][0]
                     dbVersion = [i.strip() for i in open(os.path.join(dbpath,db,"version.txt"),"r")][0]
-                    print(f"Database: {dbnum+1}; dbname: {db}; description: {dbDescription}; version: {dbVersion}; location: {os.path.join(dbpath,db)}")
+                    if refdb=="None":
+                        print(f"-----------\nDatabase: {dbnum+1}; dbname: {db}; description: {dbDescription}; version: {dbVersion}; location: {os.path.join(dbpath,db)}\n-----------\n")
+                    elif refdb==db:
+                        print(f"-----------\nDatabase: {dbnum+1}; dbname: {db}; description: {dbDescription}; version: {dbVersion}; location: {os.path.join(dbpath,db)}\n-----------\n")
+                    else:
+                        pass
                 else:
-                    print(f"Database: {dbnum+1}; dbname: {db}; description: None (update databases!); version: None (update databases!); location: {os.path.join(dbpath,db)}")
+                    if refdb=="None":
+                        print(f"-----------\nDatabase: {dbnum+1}; dbname: {db}; description: None (update databases!); version: None (update databases!); location: {os.path.join(dbpath,db)}\n-----------\n")
+                    if refdb==db:
+                        print(f"-----------\nDatabase: {dbnum+1}; dbname: {db}; description: None (update databases!); version: None (update databases!); location: {os.path.join(dbpath,db)}\n-----------\n")
+                    else:
+                        pass
             else:
                 pass
 
     sys.exit()
 
-def showDatabaseVersions():
+def showDatabaseVersions(refdb="None"):
     dbpath = getdbLocation()
     
     if (not os.path.exists(dbpath)):
@@ -222,9 +249,41 @@ def showDatabaseVersions():
             if os.path.isdir(os.path.join(dbpath,db)):
                 if (os.path.exists(os.path.join(dbpath,db,"version.txt"))):
                     dbVersion = [i.strip() for i in open(os.path.join(dbpath,db,"version.txt"),"r")][0]
-                    print(f"Database: {dbnum+1}; dbname: {db}; version: {dbVersion}")
+                    if refdb=="None":
+                        print(f"-----------\nDatabase: {dbnum+1}; dbname: {db}; version: {dbVersion}\n-----------\n")
+                    elif refdb==db:
+                        print(f"-----------\nDatabase: {dbnum+1}; dbname: {db}; version: {dbVersion}\n-----------\n")
+                    else:
+                        pass
                 else:
-                    print(f"Database: {dbnum+1}; dbname: {db}; version: None (update databases!)")
+                    print(f"-----------\nDatabase: {dbnum+1}; dbname: {db}; version: None (update databases!)\n-----------\n")
+            else:
+                pass
+
+    sys.exit()
+
+def showDatabaseLineageInfo(refdb="None"):
+    dbpath = getdbLocation()
+    
+    if (not os.path.exists(dbpath)):
+        print("Run viraL database --setupdb to setup the databases")
+    else:
+        for dbnum,db in enumerate(os.listdir(dbpath)):
+            if os.path.isdir(os.path.join(dbpath,db)):
+                if (os.path.exists(os.path.join(dbpath,db,"strain.db.lineage.criteria.txt"))):
+                    if (os.path.exists(os.path.join(dbpath,db,"version.txt"))):
+                        dbVersion = [i.strip() for i in open(os.path.join(dbpath,db,"version.txt"),"r")][0]
+                    else:
+                        dbVersion = "None"
+                    dbLineageInfo = "\n".join([i.rstrip() for i in open(os.path.join(dbpath,db,"strain.db.lineage.criteria.txt"),"r")])
+                    if refdb=="None":
+                        print(f"-----------\nDatabase: {dbnum+1}; dbname: {db}; version: {dbVersion}\n-----------\n{dbLineageInfo}\n==\n\n")
+                    elif refdb==db:
+                        print(f"-----------\nDatabase: {dbnum+1}; dbname: {db}; version: {dbVersion}\n-----------\n{dbLineageInfo}\n==\n\n")
+                    else:
+                        pass
+                else:
+                    print(f"-----------\nDatabase: {dbnum+1}; dbname: {db}; version: None (update databases!)\n-----------\n")
             else:
                 pass
 
@@ -272,7 +331,11 @@ def checkDatabase():
                             print(f"Database directory {os.path.join(dbpath,refdbName,'fasta')} not found (update database!)")
                             sys.exit()
                         else:
-                            pass
+                            if (not os.path.exists(os.path.join(dbpath,refdbName,"strain.db.lineage.criteria.txt"))):
+                                print(f"Database file {os.path.join(dbpath,refdbName,'strain.db.lineage.criteria.txt')} not found (update database!)")
+                                sys.exit()
+                            else:
+                                pass
         else:
             print(f"Database directory {os.path.join(dbpath,refdbName)} not found (update database!)")
             sys.exit()
@@ -548,7 +611,7 @@ def GetLineageThresholds(segmentName):
 
     lineageThresholds = {}
     for seqItem in [i.strip().split("\t") for i in open(os.path.join(dbpath,refdbName,"lineages","lineage.thresholds.txt"),"r")]:
-        lineageThresholds[seqItem[0]] = [seqItem[1],seqItem[2]]
+        lineageThresholds[seqItem[0]] = [seqItem[1]]
 
     return(lineageThresholds[segmentName])
 
@@ -665,7 +728,7 @@ def GetLineage(seqFastaFile,seqAligner):
                 LineageName = assignLineageToSequence(blastResults['qseqid'],closestMatchedRefSeq['closestSeqName'])
 
                 if float(closestMatchedRefSeq['seqMatches']) >= float(GetLineageThresholds(blastResults['qseqid'])[0]):
-                    if float(closestMatchedRefSeq['seqMatches']) >= float(GetLineageThresholds(blastResults['qseqid'])[1]):
+                    if float(closestMatchedRefSeq['seqMatches']) >= float(GetLineageThresholds(blastResults['qseqid'])[0]):
                         assignedLineageName = LineageName 
                         assignedLineageType = "Known lineage"
                         assignedLineageInfo = ""
