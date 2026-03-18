@@ -132,7 +132,7 @@ def ReadCmdOptions():
             showDatabases(cmd1Values["refdb"])
             sys.exit()
         elif cmd1Values["setupdb"] or cmd1Values["updatedb"]:
-            updateDatabases(cmd1Values["refdb"])
+            updateDatabases()
             sys.exit()
         elif cmd1Values["version"]:
             showDatabaseVersions(cmd1Values["refdb"])
