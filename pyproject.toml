@@ -45,7 +45,7 @@ dev = ["build","twine"]
 find = {} 
 
 [tool.setuptools]
-py-modules = []
+py-modules = ["virallc.SeqLib"]
 
 [project.scripts]
 virallc = "virallc.__main__:main"
@@ -54,6 +54,7 @@ alnSeqCov = "virallc.scripts.alnSeqCov:main"
 virallcClusters1L = "virallc.scripts.virallcClusters1L:main"
 virallcClusters2L = "virallc.scripts.virallcClusters2L:main"
 virallcClusters3L = "virallc.scripts.virallcClusters3L:main"
+virallcClusters4L = "virallc.scripts.virallcClusters4L:main"
 
 [project.urls]
 Homepage = "https://github.com/ChrispinChaguza/virallc/"

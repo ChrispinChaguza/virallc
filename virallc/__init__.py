@@ -1,4 +1,4 @@
 """ ViralLC: A package rapid assignment of viral lineage nomenclature"""
 
-__version__ = "1.0.25"
+__version__ = "1.0.26"
 
