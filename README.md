@@ -42,13 +42,13 @@ cd virallc
 Second, manually install the required package dependencies (mafft, nextclade, biopython, blast, pandas, networkx, and gitdir) using Conda and Pip. If the installation fails, create a new Conda environment and then repeat the installation.
 
 ```
-conda install -c bioconda mafft=7.526 -y
-conda install -c conda-forge python=3.14.2 -y
-conda install -c bioconda nextclade=3.18.1 -y
-conda install -c conda-forge biopython=1.86 -y
-conda install -c bioconda blast=2.16.0 -y
-conda install -c conda-forge pandas=3.0.0 -y
-conda install -c conda-forge networkx=3.6.1 -y
+conda install -c bioconda mafft
+conda install -c conda-forge python
+conda install -c bioconda nextclade
+conda install -c conda-forge biopython
+conda install -c bioconda blast
+conda install -c conda-forge pandas
+conda install -c conda-forge networkx
 ```
 ```
 pip install gitdir==1.2.7
