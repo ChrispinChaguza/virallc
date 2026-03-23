@@ -30,7 +30,7 @@ RUN wget --quiet https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/nc
 RUN tar -xzf ncbi-blast-2.17.0+-aarch64-linux.tar.gz -C ./
 RUN cp ncbi-blast-2.17.0+/bin/* /usr/local/bin/
 RUN rm -rf ncbi-blast-2.17.0+/bin/* && rm -rf ncbi-blast-2.17.0+-aarch64-linux.tar.gz
-
+#RUN conda install -c conda-forge python=3.14.2 -y
 RUN /opt/conda/bin/conda install -c bioconda mafft=7.525 -y 
 RUN /opt/conda/bin/conda install -c bioconda nextclade=3.18.1 -y
 RUN /opt/conda/bin/conda install -c conda-forge biopython=1.86 -y
