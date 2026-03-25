@@ -61,7 +61,7 @@ def main():
     Graph.add_edges_from(seqPair)
     networkClusters = tuple(nx.connected_components(Graph))
 
-    fhandle = open(f"{cmdValues['seqlabel']}.clusters.tsv","w")
+    fhandle = open(f"{cmdValues['output']}","w")
 
     for i,j in enumerate(networkClusters):
         for s in j:

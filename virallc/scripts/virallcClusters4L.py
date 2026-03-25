@@ -61,7 +61,7 @@ def main():
     Graph.add_edges_from(seqPair)
     networkClusters = tuple(nx.connected_components(Graph))
 
-    fhandle = open(f"{cmdValues['seqlabel']}.clusters.tsv","w")
+    fhandle = open(f"{cmdValues['output']}","w")
 
     for i,j in enumerate(networkClusters):
         snpDistDF2 = snpDistDF[snpDistDF.seq1.isin(j) & snpDistDF.seq2.isin(j)]
