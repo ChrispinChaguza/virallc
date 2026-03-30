@@ -39,7 +39,6 @@ def main():
 
 
     cmdValues = {'input': options.input[0:][0],
-                 'seqlabel': options.seqlabel[0:][0],
                  'prefix': options.prefix[0:][0],
                  'output': options.outfile[0:][0] if isinstance(options.outfile,list) else options.outfile,
                  'separator': options.separator[0:][0] if isinstance(options.separator,list) else options.separator,
