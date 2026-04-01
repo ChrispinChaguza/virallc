@@ -89,7 +89,7 @@ def main():
                 snpDistDF3RR = snpDistDF2RR[snpDistDF2RR.pid >= cmdValues["thresholds"][3]]
 
                 Graph3 = nx.Graph()
-                Graph3.add_nodes_from(q)
+                Graph3.add_nodes_from(y)
 
                 seqPair1RR = [(snpDistDF3RR.seq1[z],snpDistDF3RR.seq2[z]) for z in snpDistDF3RR.index]
 
