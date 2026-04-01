@@ -2,7 +2,4 @@
 alnPairDist = virallc.scripts.alnPairDist:main
 alnSeqCov = virallc.scripts.alnSeqCov:main
 virallc = virallc.__main__:main
-virallcClusters1L = virallc.scripts.virallcClusters1L:main
-virallcClusters2L = virallc.scripts.virallcClusters2L:main
-virallcClusters3L = virallc.scripts.virallcClusters3L:main
-virallcClusters4L = virallc.scripts.virallcClusters4L:main
+virallcClusters = virallc.scripts.virallcClusters:main
