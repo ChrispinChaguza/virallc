@@ -9,8 +9,9 @@ git clone https://github.com/ChrispinChaguza/virallc.git
 
 ### Installing ViralLC using Pip
 
-The easist way to install the latest version of ViralLC is using Pip
+The easist way to install the latest version of ViralLC is using Pip. Install the dependencies first in a new Conda environment as shown below.
 ```
+conda env create --name virallc --file environment.yaml --yes
 pip install virallc
 ```
 
@@ -42,11 +43,12 @@ cd virallc
 Second, manually install the required package dependencies (mafft, nextclade, biopython, blast, pandas, networkx, and gitdir) using Conda.
 
 ```
-conda env create -n virallc -f environment.yml 
+conda env create --name virallc --file environment.yaml --yes
 ```
 
 Follow the instructions below to build and install ViralLC
 ```
+conda activate virallc
 python -m build 
 pip install --force-reinstall dist/{INSERT THE COMPILED SOFTWARE VERSION} 
 ```

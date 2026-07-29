@@ -605,16 +605,6 @@ def GetSeqSeqForSegments(refName):
         print(f"Reference sequence for {refName} not found (update database!)")
         return(False)
 
-def GetLineageThresholds(segmentName):
-    dbpath = getdbLocation()
-    refdbName = getDatabaseName()
-
-    lineageThresholds = {}
-    for seqItem in [i.strip().split("\t") for i in open(os.path.join(dbpath,refdbName,"lineages","lineage.thresholds.txt"),"r")]:
-        lineageThresholds[seqItem[0]] = [seqItem[1]]
-
-    return(lineageThresholds[segmentName])
-
 def GetRefLineageNames(refName):
     dbpath = getdbLocation()
     refdbName = getDatabaseName()
@@ -727,21 +717,15 @@ def GetLineage(seqFastaFile,seqAligner):
             else:
                 LineageName = assignLineageToSequence(blastResults['qseqid'],closestMatchedRefSeq['closestSeqName'])
 
-                if float(closestMatchedRefSeq['seqMatches']) >= float(GetLineageThresholds(blastResults['qseqid'])[0]):
-                    if float(closestMatchedRefSeq['seqMatches']) >= float(GetLineageThresholds(blastResults['qseqid'])[0]):
-                        assignedLineageName = LineageName 
-                        assignedLineageType = "Known lineage"
-                        assignedLineageInfo = ""
-                        assignedClosestLineage = LineageName
-                    else:
-                        assignedLineageName = LineageName
-                        assignedLineageType = "Novel lineage?"
-                        assignedClosestLineage = LineageName
-                        assignedLineageInfo = "Verify with the curators"
+                if float(closestMatchedRefSeq['seqMatches']) >= 90:
+                    assignedLineageName = LineageName 
+                    assignedLineageType = "Known lineage"
+                    assignedLineageInfo = ""
+                    assignedClosestLineage = LineageName
                 else:
                     assignedLineageName = LineageName
                     assignedLineageType = "Novel lineage?"
-                    assignedClosestLineage = f"{LineageName} (closest)"
+                    assignedClosestLineage = LineageName
                     assignedLineageInfo = "Verify with the curators"
 
                 if closestMatchedRefSeq['seqCoverage'] >= 85:
