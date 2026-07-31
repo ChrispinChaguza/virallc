@@ -517,8 +517,8 @@ def WriteAlignment(seqObjDict,outputfastafile):
 def CompareSeqsBLAST(refSeqFile,seqFile):
     tmpBlastOutFile = str(getUniqueRandomString()+".m8")
     
-    blastcmd = f"tblastx -query {refSeqFile} -subject {seqFile} -evalue 0.001 -outfmt \
-            '6 qseqid sseqid qlen slen qstart qend length pident qcovs evalue qseq sseq'"
+    blastcmd = f"blastn -query {refSeqFile} -subject {seqFile} -evalue 0.001 -outfmt \
+            '6 qseqid sseqid qlen slen qstart qend length pident qcovs evalue qseq sseq bitscore'"
 
     subprocess.call(blastcmd,shell=True,stdout=open(tmpBlastOutFile,'w'),stderr=subprocess.STDOUT)
 
@@ -530,8 +530,8 @@ def CompareSeqsBLAST(refSeqFile,seqFile):
         tmpFile = []
 
     if len(tmpFile) == 0:
-        blastcmd = f"blastn -query {refSeqFile} -subject {seqFile} -evalue 0.001 -outfmt \
-                '6 qseqid sseqid qlen slen qstart qend length pident qcovs evalue qseq sseq'"
+        blastcmd = f"tblastx -query {refSeqFile} -subject {seqFile} -evalue 0.0001 -outfmt \
+                '6 qseqid sseqid qlen slen qstart qend length pident qcovs evalue qseq sseq bitscore'"
         subprocess.call(blastcmd,shell=True,stdout=open(tmpBlastOutFile,'w'),stderr=subprocess.STDOUT)
 
         tmpFileRec = [str(record).strip() for record in open(tmpBlastOutFile,"r")]
@@ -550,8 +550,9 @@ def CompareSeqsBLAST(refSeqFile,seqFile):
         tmpBlastMatchtmp[i][7] = float(tmpBlastMatchtmp[i][7])
         tmpBlastMatchtmp[i][8] = float(tmpBlastMatchtmp[i][8])
         tmpBlastMatchtmp[i][9] = float(tmpBlastMatchtmp[i][9])
+        tmpBlastMatchtmp[i][12] = float(tmpBlastMatchtmp[i][12])
 
-    tmpBlastMatch = sorted(tmpBlastMatchtmp,key=itemgetter(9), reverse=False)[0]
+    tmpBlastMatch = sorted(tmpBlastMatchtmp,key=itemgetter(12), reverse=True)[0]
 
     os.remove(tmpBlastOutFile)
 

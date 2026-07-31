@@ -215,7 +215,7 @@ virallc citation
 
 ### Reference
 ```
-Chrispin Chaguza et al., ViralLC: A package for rapid assignment of viral lineage nomenclature, GitHub, https://github.com/ChrispinChaguza/virallc.git
+Chrispin Chaguza, Chimwemwe Mhango, Celeste M. Donato, A. Duncan Steele, Carl D. Kirkwood, Francis E. Dennis, Martin M. Nyaga, and Khuzwayo C. Jere. ViralLC: A utility for defining and assigning viral lineages consistently. Under review. GitHub, https://github.com/ChrispinChaguza/virallc.git
 ```
 
 ### Additional references
