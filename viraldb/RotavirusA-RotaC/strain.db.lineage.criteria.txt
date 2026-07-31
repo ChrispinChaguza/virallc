@@ -1,0 +1,3 @@
+Initial lineage definitions (described in the paper below):
+    - Matthijnssens J, Ciarlet M, Heiman E, Arijs I, Delbeke T, McDonald SM, Palombo EA, Iturriza-Gómara M, Maes P, Patton JT, Rahman M, Van Ranst M. Full genome-based classification of rotaviruses reveals a common origin between human Wa-Like and porcine rotavirus strains and human DS-1-like and bovine rotavirus strains. J Virol. 2008 Apr;82(7):3204-19. doi: 10.1128/JVI.02257-07. Epub 2008 Jan 23. PMID: 18216098; PMCID: PMC2268446.
+
