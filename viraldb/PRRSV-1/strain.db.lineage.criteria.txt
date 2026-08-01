@@ -1,0 +1,3 @@
+Initial lineage definitions (described in the paper below):
+    - Yim-Im W, Anderson TK, Böhmer J, Baliellas J, Stadejek T, Gauger PC, Krueger KM, Vermeulen CJ, Buter R, Kazlouski A, An T, Zhang J. Refining genetic classification of global porcine reproductive and respiratory syndrome virus type 1 (PRRSV-1) and investigating their geographic and temporal distributions. Vet Microbiol. 2025 Mar;302:110413. doi: 10.1016/j.vetmic.2025.110413. Epub 2025 Jan 30. PMID: 39904077. 
+
