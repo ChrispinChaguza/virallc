@@ -1,0 +1,4 @@
+Initial lineage definitions (described in the paper below):
+    - Campbell K, Gifford RJ, Singer J, Hill V, O'Toole A, Rambaut A, Hampson K, Brunker K. Making genomic surveillance deliver: A lineage classification and nomenclature system to inform rabies elimination. PLoS Pathog. 2022 May 2;18(5):e1010023. doi: 10.1371/journal.ppat.1010023. PMID: 35500026; PMCID: PMC9162366.
+      https://github.com/KathrynCampbell/MADDOG/blob/main/Datasets/
+
