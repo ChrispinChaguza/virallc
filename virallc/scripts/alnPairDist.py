@@ -30,6 +30,7 @@ def compareSeqs(i,j,k):
 
 def main():
     version = "1.0.1"
+
     options=argparse.ArgumentParser(sys.argv[0],
                 usage=argparse.SUPPRESS,
                 description='alnPairDist: A tool for calculating pairwise similarity of taxa in a multiple sequence alignment',

@@ -212,6 +212,7 @@ def lineages4Levels(cmdValues):
     fhandle.close();
 
 def main():
+    version = "1.0.1"
 
     options=argparse.ArgumentParser(sys.argv[0],
                 usage=argparse.SUPPRESS,
@@ -235,18 +236,24 @@ def main():
     options.add_argument('--thresholds','-t',action='store',required=True,nargs="*",
                         metavar='thresholds',dest='thresholds',
                         help='Cluster or lineage thresholds')
-    options.add_argument('--verbose','-v',action='store_true',default=False,
-                        dest='verbose',help='Show progress')
+    options.add_argument('--version','-v',action='store_true',default=False,
+                        dest='version',help='Show software version')
 
-    options=options.parse_args(args=None if sys.argv[2:] else ['--help'])
-
+    if len(sys.argv[:])>1:
+        if sys.argv[1]=="-v" or sys.argv[1]=="--version":
+            print(f"virallcClusters {version}")
+            sys.exit()
+        else:
+            options=options.parse_args(args=None if sys.argv[2:] else ['--help'])
+    else:
+        options=options.parse_args(args=None if sys.argv[2:] else ['--help'])
 
     cmdValues = {'input': options.input[0:][0],
                  'prefix': options.prefix[0:][0],
                  'output': options.outfile[0:][0] if isinstance(options.outfile,list) else options.outfile,
                  'separator': options.separator[0:][0] if isinstance(options.separator,list) else options.separator,
                  'thresholds': [float(i) for i in options.thresholds[0:]] if isinstance(options.thresholds,list) else options.thresholds,
-                 'verbose': options.verbose}
+                 'version': options.version}
 
     if len(cmdValues['thresholds'])==1:
         lineages1Levels(cmdValues)

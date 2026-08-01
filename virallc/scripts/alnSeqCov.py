@@ -51,7 +51,8 @@ def main():
 
     cmdValues = {'inputSeqFiles': options.input[0:][0],
                  'outputFile': options.outfile[0:][0] if isinstance(options.outfile,list) else options.outfile,
-                 'threads': int(options.threads[0:][0]) if isinstance(options.threads,list) else options.threads}
+                 'threads': int(options.threads[0:][0]) if isinstance(options.threads,list) else options.threads,
+                 'version': options.version}
 
 
     alignment=[i for i in SeqIO.parse(cmdValues['inputSeqFiles'],"fasta")]
