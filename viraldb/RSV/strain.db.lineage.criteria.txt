@@ -1,0 +1,3 @@
+Initial lineage definitions (described in the paper below):
+    - Goya S, Ruis C, Neher RA, Meijer A, Aziz A, Hinrichs AS, von Gottberg A, Roemer C, Amoako DG, Acuña D, McBroome J, Otieno JR, Bhiman JN, Everatt J, Muñoz-Escalante JC, Ramaekers K, Duggan K, Presser LD, Urbanska L, Venter M, Wolter N, Peret TCT, Salimi V, Potdar V, Borges V, Viegas M. Standardized Phylogenetic Classification of Human Respiratory Syncytial Virus below the Subgroup Level. Emerg Infect Dis. 2024 Aug;30(8):1631-1641. doi: 10.3201/eid3008.240209. PMID: 39043393; PMCID: PMC11286072.
+
