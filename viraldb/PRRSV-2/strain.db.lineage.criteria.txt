@@ -1,0 +1,4 @@
+Initial lineage definitions (described in the paper below):
+    - VanderWaal, Kimberly, Nakarin Pamornchainvakul, Mariana Kikuti, Daniel Linhares, Giovani Trevisan, Jianqiang Zhang, Tavis K Anderson, Michael Zeller, Stephanie Rossow, Derald J Holtkamp, Dennis N Makau, Cesar A Corzo, and Igor A.D. Paploski. "Phylogenetic-Based Methods for Fine-Scale Classification of Prrsv-2 Orf5 Sequences: A Comparison of Their Robustness and Reproducibility." bioRxiv (2024): 2024.05.13.593920. https://dx.doi.org/10.1101/2024.05.13.593920.      https://github.com/kvanderwaal/prrsv2_classification
+
+
