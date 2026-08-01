@@ -1,0 +1,4 @@
+Initial lineage definitions (described in the paper below):
+    - Seabra SG, Libin PJK, Theys K, Zhukova A, Potter BI, Nebenzahl-Guimaraes H, Gorbalenya AE, Sidorov IA, Pimentel V, Pingarilho M, de Vasconcelos ATR, Dellicour S, Khouri R, Gascuel O, Vandamme AM, Baele G, Cuypers L, Abecasis AB. Genome-wide diversity of Zika virus: Exploring spatio-temporal dynamics to guide a new nomenclature proposal. Virus Evol. 2022 Mar 29;8(1):veac029. doi: 10.1093/ve/veac029. PMID: 35478717; PMCID: PMC9035895.y
+
+
