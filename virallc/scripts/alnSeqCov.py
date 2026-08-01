@@ -18,6 +18,8 @@ def compareSeqs(i,j):
     return(f"{i.id}\t{seqLen}\t{seqLenNoN}\t{seqCov}")
 
 def main():
+    version = "1.0.1"
+
     options=argparse.ArgumentParser(sys.argv[0],
                 usage=argparse.SUPPRESS,
                 description='alnSeqCov: A tool for calculating sequence coverage of taxa in a multiple sequence alignment',
@@ -35,9 +37,17 @@ def main():
     options.add_argument('--threads','-t',action='store',required=False,nargs=1,
                         metavar='threads',dest='threads',default=1,
                         help='Number of threads (default=1)')
+    options.add_argument('--version','-v',action='store_true',default=False,
+                        dest='version',help='Show software version')
 
-    options=options.parse_args(args=None if sys.argv[2:] else ['--help'])
-
+    if len(sys.argv[:])>1:
+        if sys.argv[1]=="-v" or sys.argv[1]=="--version":
+            print(f"alnSeqCov {version}")
+            sys.exit()
+        else:
+            options=options.parse_args(args=None if sys.argv[2:] else ['--help'])
+    else:
+        options=options.parse_args(args=None if sys.argv[2:] else ['--help'])
 
     cmdValues = {'inputSeqFiles': options.input[0:][0],
                  'outputFile': options.outfile[0:][0] if isinstance(options.outfile,list) else options.outfile,
