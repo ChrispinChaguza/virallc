@@ -222,16 +222,16 @@ def showDatabases(refdb="None"):
                     dbDescription = [i.strip() for i in open(os.path.join(dbpath,db,"strain.db.info.txt"),"r")][0]
                     dbVersion = [i.strip() for i in open(os.path.join(dbpath,db,"version.txt"),"r")][0]
                     if refdb=="None":
-                        print(f"-----------\nDatabase: {dbnum+1}; dbname: {db}; description: {dbDescription}; version: {dbVersion}; location: {os.path.join(dbpath,db)}\n-----------\n")
+                        print(f"-----------\nDatabase: {dbnum+1}; \nDatabase name: {db}; \nDescription: {dbDescription}; \nVersion: {dbVersion}; \nLocation: {os.path.join(dbpath,db)}\n-----------\n")
                     elif refdb==db:
-                        print(f"-----------\nDatabase: {dbnum+1}; dbname: {db}; description: {dbDescription}; version: {dbVersion}; location: {os.path.join(dbpath,db)}\n-----------\n")
+                        print(f"-----------\nDatabase: {dbnum+1}; \nDatabase name: {db}; \nDescription: {dbDescription}; \nVersion: {dbVersion}; \nLocation: {os.path.join(dbpath,db)}\n-----------\n")
                     else:
                         pass
                 else:
                     if refdb=="None":
-                        print(f"-----------\nDatabase: {dbnum+1}; dbname: {db}; description: None (update databases!); version: None (update databases!); location: {os.path.join(dbpath,db)}\n-----------\n")
+                        print(f"-----------\nDatabase: {dbnum+1}; \nDatabase name: {db}; \nDescription: None (update databases!); \nVersion: None (update databases!); \nLocation: {os.path.join(dbpath,db)}\n-----------\n")
                     if refdb==db:
-                        print(f"-----------\nDatabase: {dbnum+1}; dbname: {db}; description: None (update databases!); version: None (update databases!); location: {os.path.join(dbpath,db)}\n-----------\n")
+                        print(f"-----------\nDatabase: {dbnum+1}; \nDatabase name: {db}; \nDescription: None (update databases!); \nVersion: None (update databases!); \nLocation: {os.path.join(dbpath,db)}\n-----------\n")
                     else:
                         pass
             else:
@@ -517,7 +517,7 @@ def WriteAlignment(seqObjDict,outputfastafile):
 def CompareSeqsBLAST(refSeqFile,seqFile):
     tmpBlastOutFile = str(getUniqueRandomString()+".m8")
     
-    blastcmd = f"blastn -query {refSeqFile} -subject {seqFile} -evalue 0.001 -outfmt \
+    blastcmd = f"blastn -task blastn-short -query {refSeqFile} -subject {seqFile} -evalue 0.001 -outfmt \
             '6 qseqid sseqid qlen slen qstart qend length pident qcovs evalue qseq sseq bitscore'"
 
     subprocess.call(blastcmd,shell=True,stdout=open(tmpBlastOutFile,'w'),stderr=subprocess.STDOUT)
@@ -530,7 +530,7 @@ def CompareSeqsBLAST(refSeqFile,seqFile):
         tmpFile = []
 
     if len(tmpFile) == 0:
-        blastcmd = f"tblastx -query {refSeqFile} -subject {seqFile} -evalue 0.0001 -outfmt \
+        blastcmd = f"tblastx -query {refSeqFile} -subject {seqFile} -evalue 0.001 -outfmt \
                 '6 qseqid sseqid qlen slen qstart qend length pident qcovs evalue qseq sseq bitscore'"
         subprocess.call(blastcmd,shell=True,stdout=open(tmpBlastOutFile,'w'),stderr=subprocess.STDOUT)
 
@@ -568,6 +568,7 @@ def CompareSeqsBLAST(refSeqFile,seqFile):
     blastMatch['evalue'] = tmpBlastMatch[9]
     blastMatch['qseq'] = tmpBlastMatch[10]
     blastMatch['sseq'] = tmpBlastMatch[11]
+    blastMatch['blastscore'] = tmpBlastMatch[12]
 
     return(blastMatch)
 
