@@ -12,6 +12,10 @@ git clone https://github.com/ChrispinChaguza/virallc.git
 The easist way to install the latest version of ViralLC is using Pip. Install the dependencies first in a new Conda environment as shown below.
 ```
 conda env create --name virallc -f environment.yml --yes
+```
+
+Or install using Pip and then install the required dependencies separately from Conda.
+```
 pip install virallc
 ```
 
