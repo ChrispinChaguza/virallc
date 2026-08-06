@@ -1,6 +1,6 @@
 Metadata-Version: 2.4
 Name: virallc
-Version: 1.0.30
+Version: 1.1.0
 Summary: ViralLC: A Python package for consistent assignment of viral lineages
 Author-email: Chrispin Chaguza <chrispin.chaguza@gmail.com>
 Maintainer-email: Chrispin Chaguza <chrispin.chaguza@gmail.com>
@@ -45,7 +45,11 @@ git clone https://github.com/ChrispinChaguza/virallc.git
 
 The easist way to install the latest version of ViralLC is using Pip. Install the dependencies first in a new Conda environment as shown below.
 ```
-conda env create --name virallc --file environment.yaml --yes
+conda env create --name virallc -f environment.yml --yes
+```
+
+Or install using Pip and then install the required dependencies separately from Conda.
+```
 pip install virallc
 ```
 

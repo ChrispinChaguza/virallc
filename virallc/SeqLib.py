@@ -439,19 +439,39 @@ def GetClosestSeq(seqAlignName,refSeqName):
 def AddSeqToAlignment(seqfastafile,seqFile,refSeqFile,seqAligner):
     threads = 5
     outfastafile = str(getUniqueRandomString()+".aln")
-    outfastafile1 = str(getUniqueRandomString()+".aln")
+    outfastafile1 = str(getUniqueRandomString()+".R.aln")
+    outfastafile2 = str(getUniqueRandomString()+".aln")
 
     if seqAligner=="nextclade":
         nextcladecmd = f"nextclade run --silent --kmer-distance 15 --kmer-length 31 --allowed-mismatches 50 \
                        --window-size 100 --min-match-length 50 --max-alignment-attempts 5 --min-length 50 \
                        --output-fasta {outfastafile1} --input-ref {refSeqFile} {seqFile} {seqfastafile}"
-        subprocess.call(nextcladecmd,shell=True,stdout=open(outfastafile1,'w'),stderr=subprocess.STDOUT)
+        subprocess.call(nextcladecmd,shell=True,stdout=open(outfastafile2,'w'),stderr=subprocess.STDOUT)
+
+        with open(outfastafile1,"w") as tmpFileOut:
+            tmpRefSeq=[seq.id for seq in SeqIO.parse(refSeqFile,"fasta")][0]
+
+            for tmpSeqName in SeqIO.parse(outfastafile2,"fasta"):
+                if tmpSeqName.id != tmpRefSeq:
+                    tmpFileOut.write(f">{tmpSeqName.id}\n{tmpSeqName.seq}\n")
+                else:
+                    pass
+
     else:
         mafftcmd = f"mafft --anysymbol --quiet --auto --thread {threads} --addfull {seqFile} --keeplength {refSeqFile}"
         subprocess.call(mafftcmd,shell=True,stdout=open(outfastafile,'w'),stderr=subprocess.STDOUT)
 
         mafftcmd1 = f"mafft --anysymbol --quiet --auto --thread {threads} --addfull {seqfastafile} --keeplength {outfastafile}"
-        subprocess.call(mafftcmd1,shell=True,stdout=open(outfastafile1,'w'),stderr=subprocess.STDOUT)
+        subprocess.call(mafftcmd1,shell=True,stdout=open(outfastafile2,'w'),stderr=subprocess.STDOUT)
+
+        with open(outfastafile1,"w") as tmpFileOut:
+            tmpRefSeq=[seq.id for seq in SeqIO.parse(refSeqFile,"fasta")][0]
+            
+            for tmpSeqName in SeqIO.parse(outfastafile2,"fasta"):
+                if tmpSeqName.id != tmpRefSeq:
+                    tmpFileOut.write(f">{tmpSeqName.id}\n{tmpSeqName.seq}\n")
+                else:
+                    pass
 
     tmpAlignSeqs = {}
 
@@ -463,9 +483,19 @@ def AddSeqToAlignment(seqfastafile,seqFile,refSeqFile,seqAligner):
             subprocess.call(mafftcmd,shell=True,stdout=open(outfastafile,'w'),stderr=subprocess.STDOUT)
 
             mafftcmd1 = f"mafft --anysymbol --quiet --auto --thread {threads} --addfull {seqfastafile} --keeplength {outfastafile}"
-            subprocess.call(mafftcmd1,shell=True,stdout=open(outfastafile1,'w'),stderr=subprocess.STDOUT)
+            subprocess.call(mafftcmd1,shell=True,stdout=open(outfastafile2,'w'),stderr=subprocess.STDOUT)
+
+            with open(outfastafile1,"w") as tmpFileOut:
+                tmpRefSeq=[seq.id for seq in SeqIO.parse(refSeqFile,"fasta")][0]
+            
+                for tmpSeqName in SeqIO.parse(outfastafile2,"fasta"):
+                    if tmpSeqName.id != tmpRefSeq:
+                        tmpFileOut.write(f">{tmpSeqName.id}\n{tmpSeqName.seq}\n")
+                    else:
+                        pass
 
             os.remove(outfastafile)
+            os.remove(outfastafile2)
         else:
             pass
     else:
@@ -473,9 +503,19 @@ def AddSeqToAlignment(seqfastafile,seqFile,refSeqFile,seqAligner):
         subprocess.call(mafftcmd,shell=True,stdout=open(outfastafile,'w'),stderr=subprocess.STDOUT)
 
         mafftcmd1 = f"mafft --anysymbol --quiet --auto --thread {threads} --addfull {seqfastafile} --keeplength {outfastafile}"
-        subprocess.call(mafftcmd1,shell=True,stdout=open(outfastafile1,'w'),stderr=subprocess.STDOUT)
+        subprocess.call(mafftcmd1,shell=True,stdout=open(outfastafile2,'w'),stderr=subprocess.STDOUT)
+
+        with open(outfastafile1,"w") as tmpFileOut:
+            tmpRefSeq=[seq.id for seq in SeqIO.parse(refSeqFile,"fasta")][0]
+
+            for tmpSeqName in SeqIO.parse(outfastafile2,"fasta"):
+                if tmpSeqName.id != tmpRefSeq:
+                    tmpFileOut.write(f">{tmpSeqName.id}\n{tmpSeqName.seq}\n")
+                else:
+                    pass
 
         os.remove(outfastafile)
+        os.remove(outfastafile2)
 
     if os.path.exists(outfastafile1):
         tmpAlignSeqs = LoadSeqAlignment(outfastafile1)
@@ -487,9 +527,19 @@ def AddSeqToAlignment(seqfastafile,seqFile,refSeqFile,seqAligner):
             subprocess.call(mafftcmd,shell=True,stdout=open(outfastafile,'w'),stderr=subprocess.STDOUT)
 
             mafftcmd1 = f"mafft --anysymbol --quiet --auto --thread {threads} --addfull {seqfastafile} --keeplength {outfastafile}"
-            subprocess.call(mafftcmd1,shell=True,stdout=open(outfastafile1,'w'),stderr=subprocess.STDOUT)
+            subprocess.call(mafftcmd1,shell=True,stdout=open(outfastafile2,'w'),stderr=subprocess.STDOUT)
+
+            with open(outfastafile1,"w") as tmpFileOut:
+                tmpRefSeq=[seq.id for seq in SeqIO.parse(refSeqFile,"fasta")][0]
+
+                for tmpSeqName in SeqIO.parse(outfastafile2,"fasta"):
+                    if tmpSeqName.id != tmpRefSeq:
+                        tmpFileOut.write(f">{tmpSeqName.id}\n{tmpSeqName.seq}\n")
+                    else:
+                        pass
 
             os.remove(outfastafile)
+            os.remove(outfastafile2)
 
             if os.path.exists(outfastafile1):
                 if os.path.getsize(outfastafile1)==0:
@@ -552,7 +602,7 @@ def CompareSeqsBLAST(refSeqFile,seqFile):
         tmpBlastMatchtmp[i][9] = float(tmpBlastMatchtmp[i][9])
         tmpBlastMatchtmp[i][12] = float(tmpBlastMatchtmp[i][12])
 
-    tmpBlastMatch = sorted(tmpBlastMatchtmp,key=itemgetter(12), reverse=True)[0]
+    tmpBlastMatch = sorted(tmpBlastMatchtmp,key=itemgetter(8), reverse=True)[0]
 
     os.remove(tmpBlastOutFile)
 
@@ -607,6 +657,25 @@ def GetSeqSeqForSegments(refName):
         print(f"Reference sequence for {refName} not found (update database!)")
         return(False)
 
+def GetNovelLineageThresholdForSegments(segmentName):
+    refdbName = getDatabaseName()
+    dbpath = getdbLocation()
+
+    lineageThresholds = {}
+
+    thresfile = os.path.join(dbpath,refdbName,"lineages","lineage.thresholds.txt")
+    if os.path.exists(thresfile):
+        for thresData in open(thresfile,"r"):
+            lineageThresholds[str(thresData).strip().split("\t")[0]] = float(str(thresData).strip().split("\t")[1])
+    else:
+        lineageThresholds[segmentName] = 90
+
+    if segmentName in [i for i in lineageThresholds.keys()]:
+        return(lineageThresholds[segmentName])
+    else:
+        lineageThresholds[segmentName] = 90
+        return(lineageThresholds[segmentName])
+
 def GetRefLineageNames(refName):
     dbpath = getdbLocation()
     refdbName = getDatabaseName()
@@ -652,7 +721,7 @@ def assignLineageToSequence(segmentName,seqName):
 
 def GetLineage(seqFastaFile,seqAligner):
     assignedLineageReport = {}
-    blastCoverageThresholdSegment = 20
+    blastCoverageThresholdSegment = 25
 
     for seqFastaItem in SeqIO.parse(seqFastaFile,"fasta"):
         tmpSeqName = seqFastaItem.id
@@ -719,7 +788,9 @@ def GetLineage(seqFastaFile,seqAligner):
             else:
                 LineageName = assignLineageToSequence(blastResults['qseqid'],closestMatchedRefSeq['closestSeqName'])
 
-                if float(closestMatchedRefSeq['seqMatches']) >= 90:
+                NovelLineageThreshold = GetNovelLineageThresholdForSegments(blastResults['qseqid'])
+
+                if float(closestMatchedRefSeq['seqMatches']) >= NovelLineageThreshold:
                     assignedLineageName = LineageName 
                     assignedLineageType = "Known lineage"
                     assignedLineageInfo = ""

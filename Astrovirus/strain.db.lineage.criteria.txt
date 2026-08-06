@@ -1,0 +1,3 @@
+Initial lineage definitions:
+    - Level 1 lineages: 85% nucleotide identity 
+    - Level 2 lineages: 95% nucleotide identity
