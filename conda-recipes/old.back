@@ -1,4 +1,5 @@
-{% set version = "1.1.4" %}
+{% set python_min = "3.8" %}
+{% set version = "1.1.3" %}
 
 package:
   name: virallc
@@ -6,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/v/virallc/virallc-{{ version }}.tar.gz
-  sha256: 57e32472133b819b29e4d30ba23c98e513f154df223d26e086a05cfcf2cebe43
+  sha256: 2cdad059af0206e6841f3129a99c0ee19401d9bf9780306d3ce687118e51d25c
 
 build:
   entry_points:
@@ -22,11 +23,11 @@ build:
 
 requirements:
   host:
-    - python >=3.8
+    - python {{ python_min }}.*
     - setuptools
     - pip
   run:
-    - python >=3.8
+    - python >={{ python_min }}
     - biopython
     - networkx
     - python-build
@@ -37,15 +38,16 @@ requirements:
 
 test:
   imports:
-    - virallc
+    - pathogist
   commands:
+    - pip check
     - virallc --help
     - alnPairDist --help
     - alnSeqCov --help
     - virallcClusters --help
   requires:
     - pip
-    - python
+    - python {{ python_min }}.*
 
 about:
   home: https://github.com/ChrispinChaguza/virallc/
