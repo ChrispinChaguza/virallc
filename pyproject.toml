@@ -27,8 +27,6 @@ classifiers = [
 
 keywords = ["Virus","Lineage","Strain typing","Lineage classification","Genotype","Sublineage","Genome"]
 dependencies = [
-   "setuptools",
-   "toml",
    "biopython",
    "networkx",
    "build",
