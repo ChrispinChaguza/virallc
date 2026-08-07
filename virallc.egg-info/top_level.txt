@@ -1,4 +1,3 @@
-bioconda-recipes
 conda-recipes
 dist
 example
