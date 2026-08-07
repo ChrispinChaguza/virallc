@@ -1,6 +1,6 @@
 Metadata-Version: 2.4
 Name: virallc
-Version: 1.1.2
+Version: 1.1.3
 Summary: ViralLC: A Python package for consistent assignment of viral lineages
 Author-email: Chrispin Chaguza <chrispin.chaguza@gmail.com>
 Maintainer-email: Chrispin Chaguza <chrispin.chaguza@gmail.com>
@@ -24,9 +24,6 @@ Requires-Dist: biopython
 Requires-Dist: networkx
 Requires-Dist: build
 Requires-Dist: pandas
-Provides-Extra: dev
-Requires-Dist: build; extra == "dev"
-Requires-Dist: twine; extra == "dev"
 Dynamic: license-file
 
 # ViralLC: A package for rapid assignment of viral lineage nomenclature

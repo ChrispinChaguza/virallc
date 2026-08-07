@@ -2,7 +2,3 @@ biopython
 networkx
 build
 pandas
-
-[dev]
-build
-twine

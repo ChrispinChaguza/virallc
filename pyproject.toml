@@ -36,9 +36,6 @@ dependencies = [
 [tool.setuptools.dynamic]
 version = {attr = "virallc.__version__"}
 
-[project.optional-dependencies]
-dev = ["build","twine"]
-
 [tool.setuptools.packages]
 find = {} 
 
