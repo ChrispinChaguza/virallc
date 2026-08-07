@@ -1,4 +1,3 @@
-Astrovirus
 dist
 example
 viraldb

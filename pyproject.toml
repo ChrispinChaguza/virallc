@@ -31,7 +31,6 @@ dependencies = [
    "toml",
    "biopython",
    "networkx",
-   "gitdir",
    "build",
    "pandas"
 ]

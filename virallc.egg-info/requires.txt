@@ -2,7 +2,6 @@ setuptools
 toml
 biopython
 networkx
-gitdir
 build
 pandas
 

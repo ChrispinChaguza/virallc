@@ -192,18 +192,40 @@ def updateDatabases():
         pass
 
     try:
-        result = subprocess.call(["gitdir","https://github.com/ChrispinChaguza/virallc/tree/main/viraldb"],
-                stdout=subprocess.DEVNULL,stderr=subprocess.STDOUT)
+        gituser = "chrispinchaguza"
+        gitrepo = "virallc"
+        gitbranch = "main"
 
-        if os.path.exists(dbpath.stem):
-            shutil.move(dbpath.stem,dbpath)
+        dburl = f"http://github.com/{gituser}/{gitrepo}/archive/{gitbranch}.tar.gz"
+        tmpdbfile = f"{Path(getUniqueRandomString()).stem}.tar.gz"
+        tmpdblocation = Path(f"{gitrepo}-{gitbranch}/{dbpath.stem}")
+
+        if os.path.exists(tmpdbfile):
+            os.remove(tmpdbfile)
         else:
             pass
 
-        if os.path.exists(os.path.join(dbpath,dbpath.stem)):
-            shutil.rmtree(os.path.join(dbpath,dbpath.stem))
+        urllib.request.urlretrieve(dburl, tmpdbfile)
+
+        if os.path.exists(tmpdbfile):
+            shutil.unpack_archive(tmpdbfile)
+
+            if os.path.exists(tmpdblocation):
+                if os.path.exists(os.path.join(dbpath,dbpath.stem)):
+                    shutil.rmtree(os.path.join(dbpath,dbpath.stem))
+                else:
+                    pass
+
+                shutil.move(tmpdblocation,Path.home())
+                shutil.rmtree(os.path.dirname(tmpdblocation))
+            else:
+                print("Failed to update databases; try again (check the internet?)")
+                sys.exit()
+
+            os.remove(tmpdbfile)
         else:
-            pass
+            print("Failed to update databases; try again (check the internet?)")
+            sys.exit()
     except:
         print("Failed to update databases (check the internet?)")
         sys.exit()

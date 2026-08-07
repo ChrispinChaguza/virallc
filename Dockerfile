@@ -21,8 +21,6 @@ RUN /opt/conda/bin/conda clean -afy
 
 ENV PATH="/opt/conda/bin:/opt/conda/sbin:${PATH}"
 
-RUN pip install gitdir==1.2.7
-
 RUN /opt/conda/bin/conda init bash
 RUN /opt/conda/bin/conda tos accept
 
