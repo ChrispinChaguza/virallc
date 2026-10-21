@@ -10,9 +10,6 @@ git clone https://github.com/ChrispinChaguza/virallc.git
 ### Installing ViralLC using Conda
 
 ```
-conda install -c conda-forge virallc
-```
-```
 conda install -c bioconda virallc
 ```
 
