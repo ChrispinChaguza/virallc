@@ -1,6 +1,6 @@
 Metadata-Version: 2.4
 Name: virallc
-Version: 1.1.8
+Version: 1.1.10
 Summary: ViralLC: A utility for defining and assigning viral lineages consistently
 Author-email: Chrispin Chaguza <chrispin.chaguza@gmail.com>
 Maintainer-email: Chrispin Chaguza <chrispin.chaguza@gmail.com>
@@ -17,7 +17,7 @@ Classifier: Development Status :: 4 - Beta
 Classifier: Environment :: Console
 Classifier: Topic :: Scientific/Engineering :: Bio-Informatics
 Classifier: Intended Audience :: Science/Research
-Requires-Python: >=3.8
+Requires-Python: >=3.13
 Description-Content-Type: text/markdown
 License-File: LICENSE
 Requires-Dist: biopython

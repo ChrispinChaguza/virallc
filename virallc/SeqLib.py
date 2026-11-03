@@ -589,7 +589,7 @@ def WriteAlignment(seqObjDict,outputfastafile):
 def CompareSeqsBLAST(refSeqFile,seqFile):
     tmpBlastOutFile = str(getUniqueRandomString()+".m8")
     
-    blastcmd = f"blastn -task blastn-short -query {refSeqFile} -subject {seqFile} -evalue 0.001 -outfmt \
+    blastcmd = f"blastn -query {refSeqFile} -subject {seqFile} -evalue 0.001 -outfmt \
             '6 qseqid sseqid qlen slen qstart qend length pident qcovs evalue qseq sseq bitscore'"
 
     subprocess.call(blastcmd,shell=True,stdout=open(tmpBlastOutFile,'w'),stderr=subprocess.STDOUT)
