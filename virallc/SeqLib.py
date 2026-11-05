@@ -587,33 +587,75 @@ def WriteAlignment(seqObjDict,outputfastafile):
             fastafile.write(">{seqName}\n{seq}\n".format(seqName=seqName,seq=seqObjDict[seqName]))
 
 def CompareSeqsBLAST(refSeqFile,seqFile):
-    tmpBlastOutFile = str(getUniqueRandomString()+".m8")
-    
-    blastcmd = f"blastn -query {refSeqFile} -subject {seqFile} -evalue 0.001 -outfmt \
+    tmpBlastOutFile1 = str(getUniqueRandomString()+".m8")
+    tmpBlastOutFile2 = str(getUniqueRandomString()+".m8")
+    tmpBlastOutFile3 = str(getUniqueRandomString()+".m8")
+   
+    blastcmd1 = f"blastn -task blastn-short -query {refSeqFile} -subject {seqFile} -evalue 0.001 -outfmt \
+            '6 qseqid sseqid qlen slen qstart qend length pident qcovs evalue qseq sseq bitscore'"
+ 
+    blastcmd2 = f"blastn -query {refSeqFile} -subject {seqFile} -evalue 0.001 -outfmt \
             '6 qseqid sseqid qlen slen qstart qend length pident qcovs evalue qseq sseq bitscore'"
 
-    subprocess.call(blastcmd,shell=True,stdout=open(tmpBlastOutFile,'w'),stderr=subprocess.STDOUT)
+    blastcmd3 = f"tblastx -query {refSeqFile} -subject {seqFile} -evalue 0.001 -outfmt \
+            '6 qseqid sseqid qlen slen qstart qend length pident qcovs evalue qseq sseq bitscore'"
+
+    subprocess.call(blastcmd1,shell=True,stdout=open(tmpBlastOutFile1,'w'),stderr=subprocess.STDOUT)
+    subprocess.call(blastcmd2,shell=True,stdout=open(tmpBlastOutFile2,'w'),stderr=subprocess.STDOUT)
+    subprocess.call(blastcmd3,shell=True,stdout=open(tmpBlastOutFile3,'w'),stderr=subprocess.STDOUT)
+
+    blastOption = {}
+
+    if os.path.exists(tmpBlastOutFile1):
+        blastOption["1"] = [str(record).strip().split("\t") for record in open(tmpBlastOutFile1,"r")]
+
+        for i,j in enumerate(blastOption["1"]):
+            blastOption["1"][i][8] = float(blastOption["1"][i][8])
+            blastOption["1"][i][12] = float(blastOption["1"][i][12])
+
+        blastOption["1"] = sorted(blastOption["1"],key=itemgetter(12), reverse=True)[0]
+    else:
+        blastOption["1"] = [0,0,0,0,0,0,0,0,0,0,0,0,0]
+
+    if os.path.exists(tmpBlastOutFile2):
+        blastOption["2"] = [str(record).strip().split("\t") for record in open(tmpBlastOutFile2,"r")]
+
+        for i,j in enumerate(blastOption["2"]):
+            blastOption["2"][i][8] = float(blastOption["2"][i][8])
+            blastOption["2"][i][12] = float(blastOption["2"][i][12])
+
+        blastOption["2"] = sorted(blastOption["2"],key=itemgetter(12), reverse=True)[0]
+    else:
+        blastOption["2"] = [0,0,0,0,0,0,0,0,0,0,0,0,0]
+
+    if os.path.exists(tmpBlastOutFile3):
+        blastOption["3"] = [str(record).strip().split("\t") for record in open(tmpBlastOutFile3,"r")]
+
+        for i,j in enumerate(blastOption["3"]):
+            blastOption["3"][i][8] = float(blastOption["3"][i][8])
+            blastOption["3"][i][12] = float(blastOption["3"][i][12])
+
+        blastOption["3"] = sorted(blastOption["3"],key=itemgetter(12), reverse=True)[0]
+    else:
+        blastOption["3"] = [0,0,0,0,0,0,0,0,0,0,0,0,0]
+
+    tmpBlastOutFile = ""
+
+    if blastOption["1"][12]>blastOption["2"][12]:
+        if blastOption["1"][12]>blastOption["3"][12]:
+            tmpBlastOutFile = tmpBlastOutFile1
+        else:
+            if blastOption["2"][12]>blastOption["3"][12]:
+                tmpBlastOutFile = tmpBlastOutFile2
+            else:
+                tmpBlastOutFile = tmpBlastOutFile3
+    else:
+        if blastOption["2"][12]>blastOption["3"][12]:
+            tmpBlastOutFile = tmpBlastOutFile2
+        else:
+            tmpBlastOutFile = tmpBlastOutFile3
 
     blastMatch = {}
-
-    if os.path.exists(tmpBlastOutFile):
-        tmpFile = [str(record).strip() for record in open(tmpBlastOutFile,"r")]
-    else:
-        tmpFile = []
-
-    if len(tmpFile) == 0:
-        blastcmd = f"tblastx -query {refSeqFile} -subject {seqFile} -evalue 0.001 -outfmt \
-                '6 qseqid sseqid qlen slen qstart qend length pident qcovs evalue qseq sseq bitscore'"
-        subprocess.call(blastcmd,shell=True,stdout=open(tmpBlastOutFile,'w'),stderr=subprocess.STDOUT)
-
-        tmpFileRec = [str(record).strip() for record in open(tmpBlastOutFile,"r")]
-
-        if len(tmpFileRec) == 0:
-            return(blastMatch)
-        else:
-            pass
-    else:
-        pass
 
     tmpBlastMatchtmp = [str(record).strip().split("\t") for record in open(tmpBlastOutFile,"r")]
 
@@ -624,23 +666,26 @@ def CompareSeqsBLAST(refSeqFile,seqFile):
         tmpBlastMatchtmp[i][9] = float(tmpBlastMatchtmp[i][9])
         tmpBlastMatchtmp[i][12] = float(tmpBlastMatchtmp[i][12])
 
-    tmpBlastMatch = sorted(tmpBlastMatchtmp,key=itemgetter(8), reverse=True)[0]
+    tmpBlastMatch = sorted(tmpBlastMatchtmp,key=itemgetter(12), reverse=True)[0]
 
     os.remove(tmpBlastOutFile)
 
-    blastMatch['qseqid'] = tmpBlastMatch[0]
-    blastMatch['sseqid'] = tmpBlastMatch[1]
-    blastMatch['qlen'] = tmpBlastMatch[2]
-    blastMatch['slen'] = tmpBlastMatch[3]
-    blastMatch['qstart'] = tmpBlastMatch[4]
-    blastMatch['qend'] = tmpBlastMatch[5]
-    blastMatch['length'] = tmpBlastMatch[6]
-    blastMatch['pident'] = tmpBlastMatch[7]
-    blastMatch['qcovs'] = tmpBlastMatch[8]
-    blastMatch['evalue'] = tmpBlastMatch[9]
-    blastMatch['qseq'] = tmpBlastMatch[10]
-    blastMatch['sseq'] = tmpBlastMatch[11]
-    blastMatch['blastscore'] = tmpBlastMatch[12]
+    if tmpBlastMatch[8] >= 20:
+        blastMatch['qseqid'] = tmpBlastMatch[0]
+        blastMatch['sseqid'] = tmpBlastMatch[1]
+        blastMatch['qlen'] = tmpBlastMatch[2]
+        blastMatch['slen'] = tmpBlastMatch[3]
+        blastMatch['qstart'] = tmpBlastMatch[4]
+        blastMatch['qend'] = tmpBlastMatch[5]
+        blastMatch['length'] = tmpBlastMatch[6]
+        blastMatch['pident'] = tmpBlastMatch[7]
+        blastMatch['qcovs'] = tmpBlastMatch[8]
+        blastMatch['evalue'] = tmpBlastMatch[9]
+        blastMatch['qseq'] = tmpBlastMatch[10]
+        blastMatch['sseq'] = tmpBlastMatch[11]
+        blastMatch['blastscore'] = tmpBlastMatch[12]
+    else:
+        blastMatch = {}
 
     return(blastMatch)
 
