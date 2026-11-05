@@ -668,7 +668,25 @@ def CompareSeqsBLAST(refSeqFile,seqFile):
 
     tmpBlastMatch = sorted(tmpBlastMatchtmp,key=itemgetter(12), reverse=True)[0]
 
-    os.remove(tmpBlastOutFile)
+    if os.path.exists(tmpBlastOutFile):
+        os.remove(tmpBlastOutFile)
+    else:
+        pass
+
+    if os.path.exists(tmpBlastOutFile1):
+        os.remove(tmpBlastOutFile1)
+    else:
+        pass
+
+    if os.path.exists(tmpBlastOutFile2):
+        os.remove(tmpBlastOutFile2)
+    else:
+        pass
+
+    if os.path.exists(tmpBlastOutFile3):
+        os.remove(tmpBlastOutFile3)
+    else:
+        pass
 
     if tmpBlastMatch[8] >= 20:
         blastMatch['qseqid'] = tmpBlastMatch[0]
