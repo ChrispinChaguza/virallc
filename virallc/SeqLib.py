@@ -607,35 +607,44 @@ def CompareSeqsBLAST(refSeqFile,seqFile):
     blastOption = {}
 
     if os.path.exists(tmpBlastOutFile1):
-        blastOption["1"] = [str(record).strip().split("\t") for record in open(tmpBlastOutFile1,"r")]
+        if os.path.getsize(tmpBlastOutFile1) > 0:
+            blastOption["1"] = [str(record).strip().split("\t") for record in open(tmpBlastOutFile1,"r")]
 
-        for i,j in enumerate(blastOption["1"]):
-            blastOption["1"][i][8] = float(blastOption["1"][i][8])
-            blastOption["1"][i][12] = float(blastOption["1"][i][12])
+            for i,j in enumerate(blastOption["1"]):
+                blastOption["1"][i][8] = float(blastOption["1"][i][8])
+                blastOption["1"][i][12] = float(blastOption["1"][i][12])
 
-        blastOption["1"] = sorted(blastOption["1"],key=itemgetter(12), reverse=True)[0]
+            blastOption["1"] = sorted(blastOption["1"],key=itemgetter(12), reverse=True)[0]
+        else:
+            blastOption["1"] = [0,0,0,0,0,0,0,0,0,0,0,0,0]
     else:
         blastOption["1"] = [0,0,0,0,0,0,0,0,0,0,0,0,0]
 
     if os.path.exists(tmpBlastOutFile2):
-        blastOption["2"] = [str(record).strip().split("\t") for record in open(tmpBlastOutFile2,"r")]
+        if os.path.getsize(tmpBlastOutFile2) > 0:
+            blastOption["2"] = [str(record).strip().split("\t") for record in open(tmpBlastOutFile2,"r")]
 
-        for i,j in enumerate(blastOption["2"]):
-            blastOption["2"][i][8] = float(blastOption["2"][i][8])
-            blastOption["2"][i][12] = float(blastOption["2"][i][12])
+            for i,j in enumerate(blastOption["2"]):
+                blastOption["2"][i][8] = float(blastOption["2"][i][8])
+                blastOption["2"][i][12] = float(blastOption["2"][i][12])
 
-        blastOption["2"] = sorted(blastOption["2"],key=itemgetter(12), reverse=True)[0]
+            blastOption["2"] = sorted(blastOption["2"],key=itemgetter(12), reverse=True)[0]
+        else:
+            blastOption["2"] = [0,0,0,0,0,0,0,0,0,0,0,0,0]
     else:
         blastOption["2"] = [0,0,0,0,0,0,0,0,0,0,0,0,0]
 
     if os.path.exists(tmpBlastOutFile3):
-        blastOption["3"] = [str(record).strip().split("\t") for record in open(tmpBlastOutFile3,"r")]
+        if os.path.getsize(tmpBlastOutFile3) > 0:
+            blastOption["3"] = [str(record).strip().split("\t") for record in open(tmpBlastOutFile3,"r")]
 
-        for i,j in enumerate(blastOption["3"]):
-            blastOption["3"][i][8] = float(blastOption["3"][i][8])
-            blastOption["3"][i][12] = float(blastOption["3"][i][12])
+            for i,j in enumerate(blastOption["3"]):
+                blastOption["3"][i][8] = float(blastOption["3"][i][8])
+                blastOption["3"][i][12] = float(blastOption["3"][i][12])
 
-        blastOption["3"] = sorted(blastOption["3"],key=itemgetter(12), reverse=True)[0]
+            blastOption["3"] = sorted(blastOption["3"],key=itemgetter(12), reverse=True)[0]
+        else:
+            blastOption["3"] = [0,0,0,0,0,0,0,0,0,0,0,0,0]
     else:
         blastOption["3"] = [0,0,0,0,0,0,0,0,0,0,0,0,0]
 
